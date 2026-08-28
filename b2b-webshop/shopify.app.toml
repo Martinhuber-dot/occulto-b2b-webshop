@@ -1,0 +1,146 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "eeaaf52fb7a20b0786946532b99e665a"
+name = "b2b-webshop"
+application_url = "https://example.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2026-10"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+# Read-only scopes for Phase A discovery (products, customers, orders, B2B, markets, metafields, theme, pricing).
+# Write scopes will be added later, per phase, once the corresponding feature is actually built.
+scopes = "read_products,read_product_listings,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,read_themes,read_locations,read_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_metaobjects,write_metaobject_definitions"
+
+[auth]
+redirect_urls = [ "https://example.com/api/auth" ]
+
+[app_proxy]
+url = "https://example.com"
+subpath = "dealer"
+prefix = "apps"
+
+[customer.metafields.app.dealer_status]
+type = "single_line_text_field"
+name = "Dealer status"
+description = "Registration workflow status: pending, approved, or rejected"
+
+  [customer.metafields.app.dealer_status.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.legal_form]
+type = "single_line_text_field"
+name = "Rechtsform"
+description = "Legal form of the dealer's company"
+
+  [customer.metafields.app.legal_form.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.vat_id]
+type = "single_line_text_field"
+name = "USt-ID"
+description = "VAT identification number"
+
+  [customer.metafields.app.vat_id.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.trade_register_no]
+type = "single_line_text_field"
+name = "Handelsregisternummer"
+description = "Trade register number (optional)"
+
+  [customer.metafields.app.trade_register_no.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.contact_position]
+type = "single_line_text_field"
+name = "Position Ansprechpartner"
+description = "Job title/position of the primary contact (optional)"
+
+  [customer.metafields.app.contact_position.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.company_website]
+type = "url"
+name = "Firmen-Website"
+description = "Company website (optional)"
+
+  [customer.metafields.app.company_website.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.branches_count]
+type = "number_integer"
+name = "Anzahl Filialen"
+description = "Number of retail locations (optional)"
+
+  [customer.metafields.app.branches_count.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.sales_mode]
+type = "single_line_text_field"
+name = "Verkaufsform"
+description = "Sales mode: stationary, online, or both"
+
+  [customer.metafields.app.sales_mode.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.registration_message]
+type = "multi_line_text_field"
+name = "Nachricht an Occulto"
+description = "Free-text message submitted during dealer registration"
+
+  [customer.metafields.app.registration_message.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.privacy_accepted]
+type = "boolean"
+name = "Datenschutz akzeptiert"
+description = "Privacy policy acceptance at registration"
+
+  [customer.metafields.app.privacy_accepted.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.terms_accepted]
+type = "boolean"
+name = "AGB/B2B-Bedingungen akzeptiert"
+description = "B2B terms acceptance at registration"
+
+  [customer.metafields.app.terms_accepted.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.jtl_customer_id]
+type = "single_line_text_field"
+name = "JTL-Kunden-ID"
+description = "Mapped JTL-Wawi customer identifier, set once synced"
+
+  [customer.metafields.app.jtl_customer_id.access]
+  admin = "merchant_read_write"
+
+[metaobjects.app.example]
+name = "Example"
+description = "An example metaobject definition created by this template"
+
+  [metaobjects.app.example.access]
+  admin = "merchant_read_write"
+
+[metaobjects.app.example.fields.title]
+name = "Title"
+type = "single_line_text_field"
+required = true
+
+[metaobjects.app.example.fields.description]
+name = "Description"
+type = "multi_line_text_field"

@@ -1,0 +1,10 @@
+query CartValidationsGenerateRunInput {
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+  }
+}

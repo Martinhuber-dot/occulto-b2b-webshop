@@ -1,0 +1,33 @@
+# Secrets / environment
+.env
+.env.*
+**/.env
+**/.env.*
+integration/cookies.txt
+
+# Node
+node_modules
+**/node_modules
+
+# macOS
+.DS_Store
+
+# b2b-webshop (Shopify app) build artifacts
+b2b-webshop/.cache
+b2b-webshop/build
+b2b-webshop/app/build
+b2b-webshop/public/build/
+b2b-webshop/public/_dev
+b2b-webshop/app/public/build
+b2b-webshop/prisma/dev.sqlite
+b2b-webshop/prisma/dev.sqlite-journal
+b2b-webshop/database.sqlite
+b2b-webshop/.shopify/*
+b2b-webshop/.shopify.lock
+b2b-webshop/.react-router/
+b2b-webshop/extensions/*/dist
+b2b-webshop/extensions/*/.shopify.lock
+
+# theme check scratch output (if regenerated)
+theme/theme_check_output.json
+theme/check_filter.js

@@ -1,0 +1,4 @@
+{
+  "name": "Minimum order value",
+  "description": "Blocks checkout below the required minimum order value (net)."
+}
