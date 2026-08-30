@@ -39,6 +39,11 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign b2b_price_visible = false
+    if customer and customer.tags contains 'dealer-approved'
+      assign b2b_price_visible = true
+    endif
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
@@ -291,6 +296,7 @@
             </div>
           </div>
           {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
+          {% if b2b_price_visible %}
           {% if quick_add == 'standard' %}
             <div class="quick-add no-js-hidden">
               {%- liquid
@@ -549,6 +555,7 @@
                 </modal-dialog>
               </div>
             {% endif %}
+          {% endif %}
           {% endif %}
           <div class="card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false -%}

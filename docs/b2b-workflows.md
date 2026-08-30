@@ -1,6 +1,6 @@
 # B2B-Workflows
 
-Stand: 2026-08-28. Bezug: [master-prompt.md](./master-prompt.md) Abschnitte 5–9, 18, 30–32.
+Stand: 2026-08-30. Bezug: [master-prompt.md](./master-prompt.md) Abschnitte 5–9, 18, 30–32.
 
 ## Händler-Registrierung → Freigabe
 
@@ -30,9 +30,7 @@ JTL-Wawi holt den Kunden bei nächster eigener Sync-Runde (Customer: pull unters
 
 ## Zugriffsschutz
 
-`customer.tags contains 'dealer-approved'` ist die einzige Bedingung, die Preis und Kaufmöglichkeit freischaltet (`theme/snippets/price.liquid`, `theme/snippets/buy-buttons.liquid`). Ohne diesen Tag: "Log in for dealer price" / "Anmelden für Händlerpreis" statt Preis, kein Warenkorb-Button.
-
-**Bekannte Lücke:** Quick-Add-Buttons in den Kollektions-Kacheln (`card-product.liquid`) sind nicht gegen diesen Tag geprüft (siehe Architektur-Doku).
+`customer.tags contains 'dealer-approved'` ist die einzige Bedingung, die Preis und Kaufmöglichkeit freischaltet (`theme/snippets/price.liquid`, `theme/snippets/buy-buttons.liquid`, seit 2026-08-30 auch `theme/snippets/card-product.liquid` für die Quick-Add-Buttons auf Kollektionskacheln). Ohne diesen Tag: "Log in for dealer price" / "Anmelden für Händlerpreis" statt Preis, kein Warenkorb-/Quick-Add-Button irgendwo im Theme.
 
 ## Mindestbestellwert
 

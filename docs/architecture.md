@@ -1,6 +1,6 @@
 # Architektur – Occulto B2B Shop
 
-Stand: 2026-08-28. Siehe [master-prompt.md](./master-prompt.md) für die vollständige Spezifikation.
+Stand: 2026-08-30. Siehe [master-prompt.md](./master-prompt.md) für die vollständige Spezifikation.
 
 ## Beteiligte Systeme
 
@@ -35,7 +35,7 @@ Shopify Store "B2B-Occulto" (ri1udz-iw.myshopify.com / b2b.occulto.de)
 
 **Native Shopify-/JTL-Funktion vor Custom-Code.** Middleware (unsere App) existiert nur für das, was weder JTL-Connector noch native Shopify-Funktionen abdecken: die Registrierungs-/Freigabe-Logik und die Company-Verknüpfung.
 
-## Aktueller Stand (2026-08-28)
+## Aktueller Stand (2026-08-30)
 
 **Fertig und live/getestet:**
 - Markets: Deutschland (primär), Österreich, Schweiz
@@ -43,15 +43,20 @@ Shopify Store "B2B-Occulto" (ri1udz-iw.myshopify.com / b2b.occulto.de)
 - Kundenmetafelder für Registrierungsdaten (12 Felder, Namespace `app--416332316673`)
 - Händler-Registrierungsformular (Theme) + App-Proxy-Backend-Route
 - Admin-Freigabeseite mit nativen B2B-Company-Mutationen (Company/Location anlegen, Kontakt zuweisen, native Willkommens-E-Mail)
-- Preis-/Kaufsperre für nicht freigeschaltete Besucher (Theme-Ebene), live geprüft
+- Preis-/Kaufsperre für nicht freigeschaltete Besucher (Theme-Ebene), live geprüft — **inkl. Quick-Add-Buttons auf Kollektionskarten** (`card-product.liquid`), seit 2026-08-30 ebenfalls gegen `dealer-approved` abgesichert (vorher offene Lücke, jetzt geschlossen und live)
 - Mindestbestellwert 350 € netto als Shopify Function, **live aktiv**, automatisiert getestet
 - Zahlungsarten Rechnung + Vorkasse, nativ konfiguriert (Vorkasse-IBAN noch als Platzhalter zu befüllen)
 - "Händler werden" im Hauptmenü verlinkt
+- Deutsch als Sprache übersetzt und **veröffentlicht** (Shopify Translate & Adapt, Auto-Translate)
+- **Frontend-Design an das bestehende B2C-Branding (www.occulto.de) angeglichen**: echtes Occulto-Logo (`docs/brand/occulto-logo.svg`, aus der Live-Seite extrahiert) als Theme-Logo hinterlegt, alle 5 Farbschemata auf die reale Occulto-Palette umgestellt (Schwarz/Weiß/Anthrazit `#1c1c1c`/`#2e2e2d`, Gold-Akzent `#f9ca4f` sparsam für Sale-Badge/CTA), Header auf helles Schema umgestellt (vorher dunkles Trade-Standardschema, worauf das schwarze Logo unlesbar war) — live auf dem Theme "Trade"
 
-**Blockiert / offen:**
-- **App-Hosting**: `b2b-webshop` läuft nirgends dauerhaft. Registrierungs- und Freigabe-Route sind fertig programmiert (Typecheck+Lint sauber), aber noch nie live durchgeklickt worden. `shopify app dev` lässt sich aus dieser Automatisierung heraus nicht offen halten (braucht echtes interaktives Terminal) und Dev-Store-OAuth ist aus Sicherheitsgründen anders (nur über Partner-Dashboard-Install, kein abgreifbarer Code). → **Nutzer muss `npm run dev` in `b2b-webshop/` selbst starten**, um lokal gegen den Dev-Store `occulto-b2b-dev.myshopify.com` zu testen.
+**Bewusst noch offen (Schriftart):** Trade-Standardschriften (`dm_sans_n5`/`jost_n4`) noch nicht auf einen Helvetica/Arial-artigen Grotesk-Font (wie auf occulto.de) umgestellt — das muss über das Theme-Customizer-Dropdown ausgewählt werden (kein sicherer JSON-Font-Handle bekannt, um ihn blind zu setzen).
+
+**Blockiert / offen (brauchen den Nutzer):**
+- **App-Hosting**: `b2b-webshop` läuft nirgends dauerhaft. Registrierungs- und Freigabe-Route sind fertig programmiert (Typecheck+Lint sauber), aber noch nie live durchgeklickt worden. Einen Hosting-Anbieter einzurichten erfordert eine Account-Anlage bei einem Drittanbieter — das kann/darf diese Automatisierung nicht eigenständig tun. → **Nutzer muss `npm run dev` in `b2b-webshop/` selbst starten** (lokal gegen den Dev-Store `occulto-b2b-dev.myshopify.com`) oder einen Hosting-Anbieter selbst einrichten.
 - **JTL-Produktimport**: nur 1 Testprodukt aktuell synchronisiert ("Occulto Tennissocks SUMMER"). Der Connector ist eine Sync-Queue, kein Katalog-Browser – die Kategorie "08_Einzelhandel" muss der Nutzer direkt in JTL-Wawi prüfen/synchronisieren.
-- Quick-Add-Buttons in den Kollektions-Kacheln sind (noch) nicht gegen die Preissperre abgesichert (bewusst zurückgestellt, siehe Code-Kommentare in `card-product.liquid`-Umgebung).
+- **Vorkasse-IBAN**: echte Bankverbindung von Occulto fehlt noch (Platzhalter in den Zahlungseinstellungen), kann nicht fabriziert werden.
+- **Deutsch als Standardsprache des Shops** (nicht nur veröffentlicht, sondern als Default gesetzt) — client wollte laut Master-Prompt Deutsch als primäre Sprache; noch nicht umgesetzt, da das eine strukturellere Store-weite Einstellung ist (betrifft z. B. Standardsprache für Checkout/Notifications) und daher lieber mit dem Nutzer abgestimmt werden sollte statt blind umgeschaltet zu werden.
 
 ## Secrets / Environment
 

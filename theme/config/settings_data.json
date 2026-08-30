@@ -141,60 +141,61 @@
       }
     },
     "content_for_index": [],
+    "logo": "shopify://shop_images/occulto-logo.svg",
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#f4f4f4",
+          "background": "#f6f6f6",
           "background_gradient": "",
-          "text": "#2b2c2d",
-          "button": "#b7aca2",
-          "button_label": "#262626",
-          "secondary_button_label": "#001128",
-          "shadow": "#001128"
+          "text": "#1c1c1c",
+          "button": "#2e2e2d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#2e2e2d",
+          "shadow": "#000000"
         }
       },
       "scheme-2": {
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "text": "#262626",
-          "button": "#797068",
+          "text": "#1c1c1c",
+          "button": "#2e2e2d",
           "button_label": "#ffffff",
-          "secondary_button_label": "#797572",
-          "shadow": "#001128"
+          "secondary_button_label": "#2e2e2d",
+          "shadow": "#000000"
         }
       },
       "scheme-3": {
         "settings": {
-          "background": "#c2b7ac",
+          "background": "#ededed",
           "background_gradient": "",
-          "text": "#262626",
-          "button": "#fdfdfd",
-          "button_label": "#262626",
-          "secondary_button_label": "#54483c",
-          "shadow": "#001128"
+          "text": "#1c1c1c",
+          "button": "#ffffff",
+          "button_label": "#1c1c1c",
+          "secondary_button_label": "#1c1c1c",
+          "shadow": "#000000"
         }
       },
       "scheme-4": {
         "settings": {
-          "background": "#1c2228",
+          "background": "#1c1c1c",
           "background_gradient": "",
           "text": "#ffffff",
           "button": "#ffffff",
-          "button_label": "#001128",
+          "button_label": "#1c1c1c",
           "secondary_button_label": "#ffffff",
-          "shadow": "#001128"
+          "shadow": "#000000"
         }
       },
       "scheme-5": {
         "settings": {
-          "background": "#323841",
+          "background": "#2e2e2d",
           "background_gradient": "",
           "text": "#ffffff",
-          "button": "#b7aca2",
-          "button_label": "#262626",
+          "button": "#f9ca4f",
+          "button_label": "#1c1c1c",
           "secondary_button_label": "#ffffff",
-          "shadow": "#001128"
+          "shadow": "#000000"
         }
       }
     }
