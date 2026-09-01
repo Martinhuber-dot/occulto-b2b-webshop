@@ -137,7 +137,7 @@ description = "Mapped JTL-Wawi customer identifier, set once synced"
 [variant.metafields.app.available_quantity]
 type = "number_integer"
 name = "Verfügbare Menge (live gespiegelt)"
-description = "Mirrors the variant's current live inventory quantity (via inventory_levels/update webhook), since Shopify Functions can't query inventory directly. Used by the pack-quantity checkout rule to allow ordering the exact remaining stock even when it's not a multiple of 5."
+description = "Live-mirrored inventory quantity, synced via webhook. Used by the pack-quantity checkout rule."
 
   [variant.metafields.app.available_quantity.access]
   admin = "merchant_read_write"
