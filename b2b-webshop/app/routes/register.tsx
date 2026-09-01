@@ -3,7 +3,10 @@ import { redirect } from "react-router";
 import { authenticate } from "../shopify.server";
 
 // App proxy endpoint for the "Händler werden" (become a retail partner) form.
-// Storefront path: /apps/dealer/register (see [app_proxy] in shopify.app.toml).
+// Storefront path: /apps/dealer/register (see [app_proxy] in shopify.app.toml),
+// but Shopify strips the "/apps/dealer" prefix before forwarding, so this
+// route file lives at the bare "/register" path to match the request it
+// actually receives.
 // Spec: docs/master-prompt.md sections 5-7.
 
 const METAFIELD_NAMESPACE = "app--416332316673";
