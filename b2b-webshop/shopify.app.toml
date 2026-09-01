@@ -2,7 +2,7 @@
 
 client_id = "eeaaf52fb7a20b0786946532b99e665a"
 name = "b2b-webshop"
-application_url = "https://example.com"
+application_url = "https://b2b-app.occulto.de"
 embedded = true
 
 [build]
@@ -26,10 +26,10 @@ api_version = "2026-10"
 scopes = "read_products,read_product_listings,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,read_themes,read_locations,read_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_metaobjects,write_metaobject_definitions"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://b2b-app.occulto.de/api/auth" ]
 
 [app_proxy]
-url = "https://example.com"
+url = "https://b2b-app.occulto.de"
 subpath = "dealer"
 prefix = "apps"
 
