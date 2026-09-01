@@ -27,8 +27,15 @@ const REQUIRED_FIELDS = [
 ] as const;
 
 function buildRedirect(request: Request, path: string, params?: Record<string, string>) {
+  // This route is only ever reached via the Shopify App Proxy, so
+  // `request.url`'s host is this app's own server (b2b-app.occulto.de),
+  // not the storefront the customer's browser is on. Redirects must target
+  // the storefront domain instead, or the customer ends up on our bare
+  // backend host with no theme/pages behind it.
   const url = new URL(request.url);
-  const target = new URL(path, `${url.protocol}//${url.host}`);
+  const shop = url.searchParams.get("shop");
+  const storefrontHost = process.env.SHOP_CUSTOM_DOMAIN || shop || url.host;
+  const target = new URL(path, `https://${storefrontHost}`);
   if (params) {
     for (const [key, value] of Object.entries(params)) {
       target.searchParams.set(key, value);
