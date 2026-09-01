@@ -42,15 +42,6 @@
             "page": "materials-and-care"
           }
         },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Merchandising tips",
-            "icon": "check_mark",
-            "content": "",
-            "page": "merchandising-tips"
-          }
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -64,7 +55,6 @@
         "description",
         "collapsible-row-1",
         "collapsible-row-0",
-        "collapsible-row-2",
         "share"
       ],
       "settings": {

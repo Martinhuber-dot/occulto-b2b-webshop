@@ -168,6 +168,13 @@ quick-order-list .pagination-wrapper {
   margin-top: 0.2rem;
 }
 
+.variant-item__size {
+  display: block;
+  font-size: 1.6rem;
+  letter-spacing: 0.06rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+}
+
 .variant-item__discounted-prices {
   margin-top: 0;
   margin-bottom: 0;

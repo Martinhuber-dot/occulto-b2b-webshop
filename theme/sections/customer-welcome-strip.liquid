@@ -1,0 +1,53 @@
+{% comment %}
+  Personalized greeting strip shown only to logged-in customers, with
+  quick links to the actions a returning B2B dealer needs most (master-prompt
+  section 51). Renders nothing for anonymous visitors.
+{% endcomment %}
+
+{{ 'section-customer-welcome-strip.css' | asset_url | stylesheet_tag }}
+
+{%- if customer -%}
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width customer-welcome-strip">
+      <h2 class="customer-welcome-strip__heading">
+        {{-
+          'sections.customer_welcome.greeting'
+          | t: name: customer.company.name | default: customer.first_name | default: customer.name
+        -}}
+      </h2>
+      <div class="customer-welcome-strip__links">
+        <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">
+          {{ 'sections.customer_welcome.browse_products' | t }}
+        </a>
+        <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">
+          {{ 'sections.customer_welcome.quick_order' | t }}
+        </a>
+        <a href="{{ routes.account_url }}" class="button button--secondary">
+          {{ 'sections.customer_welcome.my_orders' | t }}
+        </a>
+        <a href="{{ routes.account_url }}" class="button button--secondary">
+          {{ 'sections.customer_welcome.my_account' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Kunden-Willkommensleiste",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kunden-Willkommensleiste"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+.customer-welcome-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.customer-welcome-strip__heading {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.customer-welcome-strip__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

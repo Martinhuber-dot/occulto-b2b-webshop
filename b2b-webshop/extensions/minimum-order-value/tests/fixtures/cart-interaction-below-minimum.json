@@ -6,13 +6,13 @@
       "cart": {
         "cost": {
           "subtotalAmount": {
-            "amount": "500.00",
+            "amount": "3.05",
             "currencyCode": "EUR"
           }
         }
       },
       "buyerJourney": {
-        "step": "CHECKOUT_INTERACTION"
+        "step": "CART_INTERACTION"
       }
     },
     "output": {

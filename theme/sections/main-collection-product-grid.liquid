@@ -188,7 +188,50 @@
               </ul>
 
               {%- if paginate.pages > 1 -%}
-                {% render 'pagination', paginate: paginate, anchor: '' %}
+                <div id="CollectionAutoLoad-{{ section.id }}">
+                  {% render 'pagination', paginate: paginate, anchor: '' %}
+                </div>
+                <script>
+                  (function () {
+                    var grid = document.getElementById('product-grid');
+                    var wrapper = document.getElementById('CollectionAutoLoad-{{ section.id }}');
+                    if (!grid || !wrapper) return;
+
+                    function loadNext(url) {
+                      fetch(url)
+                        .then(function (res) {
+                          return res.text();
+                        })
+                        .then(function (html) {
+                          var doc = new DOMParser().parseFromString(html, 'text/html');
+                          var newGrid = doc.getElementById('product-grid');
+                          if (newGrid) {
+                            // Snapshot into a static array first: newGrid.children is a
+                            // live HTMLCollection, and appendChild() below moves each node
+                            // out of it, which would otherwise shift indices mid-iteration
+                            // and silently skip every other item.
+                            Array.from(newGrid.children).forEach(function (item) {
+                              grid.appendChild(item);
+                            });
+                          }
+                          var newWrapper = doc.getElementById('CollectionAutoLoad-{{ section.id }}');
+                          var nextLink = newWrapper ? newWrapper.querySelector('.pagination__item--prev') : null;
+                          if (nextLink && nextLink.href) {
+                            loadNext(nextLink.href);
+                          } else {
+                            wrapper.remove();
+                          }
+                        })
+                        .catch(function () {});
+                    }
+
+                    var firstNext = wrapper.querySelector('.pagination__item--prev');
+                    if (firstNext && firstNext.href) {
+                      wrapper.style.display = 'none';
+                      loadNext(firstNext.href);
+                    }
+                  })();
+                </script>
               {%- endif -%}
             </div>
           {%- endif -%}

@@ -10,6 +10,9 @@
             "currencyCode": "EUR"
           }
         }
+      },
+      "buyerJourney": {
+        "step": "CHECKOUT_INTERACTION"
       }
     },
     "output": {
@@ -18,7 +21,7 @@
           "validationAdd": {
             "errors": [
               {
-                "message": "Der Mindestbestellwert von 350.00 € netto wurde noch nicht erreicht. Es fehlen noch 250.00 €.",
+                "message": "Der Mindestbestellwert von 500.00 € netto wurde noch nicht erreicht. Es fehlen noch 400.00 €.",
                 "target": "$.cart"
               }
             ]

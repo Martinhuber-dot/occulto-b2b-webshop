@@ -184,7 +184,7 @@
         "note": "Volumenabhängige Preisgestaltung verfügbar",
         "minimum": "{{ quantity }}+",
         "price_range": "{{ minimum }}–{{ maximum }}",
-        "price_at_each_html": "bei {{ price }}/Stück"
+        "price_at_each_html": "bei {{ price }}/Pack"
       },
       "product_variants": "Produktvarianten",
       "taxes_included": "Inkl. Steuern.",
@@ -258,6 +258,13 @@
     },
     "cart": {
       "cart": "Warenkorb"
+    },
+    "customer_welcome": {
+      "greeting": "Willkommen zurück, {{ name }}",
+      "browse_products": "Produkte ansehen",
+      "quick_order": "Schnellbestellung",
+      "my_orders": "Meine Bestellungen",
+      "my_account": "Mein Konto"
     },
     "contact": {
       "form": {
@@ -335,7 +342,7 @@
       "product_disclosure": "Produktoffenlegung",
       "product_disclosures": "Produktoffenlegungen",
       "cart_error": "Beim Aktualisieren deines Warenkorbs ist ein Fehler aufgetreten. Bitte versuche es erneut.",
-      "cart_quantity_error_html": "Du kannst deinem Warenkorb nur {{ quantity }} Stück dieses Artikels hinzufügen.",
+      "cart_quantity_error_html": "Du kannst deinem Warenkorb nur {{ quantity }} Pack dieses Artikels hinzufügen.",
       "headings": {
         "product": "Produkt",
         "price": "Preis",
@@ -404,7 +411,7 @@
     "quick_order_list": {
       "product_total": "Produktzwischensumme",
       "view_cart": "Warenkorb ansehen",
-      "each": "{{ money }}/Stück",
+      "each": "{{ money }}/Pack",
       "product": "Produkt",
       "variant": "Variante",
       "variant_total": "Varianten insgesamt",

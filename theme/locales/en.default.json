@@ -259,6 +259,13 @@
     "cart": {
       "cart": "Cart"
     },
+    "customer_welcome": {
+      "greeting": "Welcome back, {{ name }}",
+      "browse_products": "Browse products",
+      "quick_order": "Quick order",
+      "my_orders": "My orders",
+      "my_account": "My account"
+    },
     "contact": {
       "form": {
         "title": "Contact form",

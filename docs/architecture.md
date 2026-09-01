@@ -1,6 +1,6 @@
 # Architektur – Occulto B2B Shop
 
-Stand: 2026-08-30. Siehe [master-prompt.md](./master-prompt.md) für die vollständige Spezifikation.
+Stand: 2026-08-30 (Abend). Siehe [master-prompt.md](./master-prompt.md) für die vollständige Spezifikation.
 
 ## Beteiligte Systeme
 
@@ -49,8 +49,7 @@ Shopify Store "B2B-Occulto" (ri1udz-iw.myshopify.com / b2b.occulto.de)
 - "Händler werden" im Hauptmenü verlinkt
 - Deutsch als Sprache übersetzt und **veröffentlicht** (Shopify Translate & Adapt, Auto-Translate)
 - **Frontend-Design an das bestehende B2C-Branding (www.occulto.de) angeglichen**: echtes Occulto-Logo (`docs/brand/occulto-logo.svg`, aus der Live-Seite extrahiert) als Theme-Logo hinterlegt, alle 5 Farbschemata auf die reale Occulto-Palette umgestellt (Schwarz/Weiß/Anthrazit `#1c1c1c`/`#2e2e2d`, Gold-Akzent `#f9ca4f` sparsam für Sale-Badge/CTA), Header auf helles Schema umgestellt (vorher dunkles Trade-Standardschema, worauf das schwarze Logo unlesbar war) — live auf dem Theme "Trade"
-
-**Bewusst noch offen (Schriftart):** Trade-Standardschriften (`dm_sans_n5`/`jost_n4`) noch nicht auf einen Helvetica/Arial-artigen Grotesk-Font (wie auf occulto.de) umgestellt — das muss über das Theme-Customizer-Dropdown ausgewählt werden (kein sicherer JSON-Font-Handle bekannt, um ihn blind zu setzen).
+- **Typografie**: Überschrift- und Fließtext-Font von den Trade-Standardschriften (`dm_sans_n5`/`jost_n4`) auf `assistant_n4` umgestellt — einziger im Theme-Schema bereits gültiger Font-Handle, optisch näher am schlichten Helvetica/Arial-artigen Grotesk von occulto.de als die vorherigen Zierschriften
 
 **Blockiert / offen (brauchen den Nutzer):**
 - **App-Hosting**: `b2b-webshop` läuft nirgends dauerhaft. Registrierungs- und Freigabe-Route sind fertig programmiert (Typecheck+Lint sauber), aber noch nie live durchgeklickt worden. Einen Hosting-Anbieter einzurichten erfordert eine Account-Anlage bei einem Drittanbieter — das kann/darf diese Automatisierung nicht eigenständig tun. → **Nutzer muss `npm run dev` in `b2b-webshop/` selbst starten** (lokal gegen den Dev-Store `occulto-b2b-dev.myshopify.com`) oder einen Hosting-Anbieter selbst einrichten.
