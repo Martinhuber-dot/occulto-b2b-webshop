@@ -51,6 +51,7 @@
       {%- if show_sku -%}
         <span class="variant-item__sku break">{{ sku | escape }}</span>
       {%- endif -%}
+      {%- render 'quick-order-list-row-inventory', variant: variant -%}
     </div>
   </td>
 
@@ -63,6 +64,7 @@
       {%- if show_sku -%}
         <span class="variant-item__sku break">{{ sku | escape }}</span>
       {%- endif -%}
+      {%- render 'quick-order-list-row-inventory', variant: variant -%}
     </div>
 
     {%- assign item_price = item.price | money -%}

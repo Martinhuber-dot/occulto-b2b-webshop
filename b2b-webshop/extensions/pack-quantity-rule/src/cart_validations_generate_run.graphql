@@ -1,0 +1,25 @@
+query CartValidationsGenerateRunInput {
+  cart {
+    lines {
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          title
+          availableQuantityMetafield: metafield(
+            namespace: "app--416332316673"
+            key: "available_quantity"
+          ) {
+            value
+          }
+          product {
+            title
+          }
+        }
+      }
+    }
+  }
+  buyerJourney {
+    step
+  }
+}

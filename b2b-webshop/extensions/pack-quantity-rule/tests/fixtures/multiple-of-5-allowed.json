@@ -1,0 +1,31 @@
+{
+  "payload": {
+    "export": "cart-validations-generate-run",
+    "target": "cart.validations.generate.run",
+    "input": {
+      "cart": {
+        "lines": [
+          {
+            "quantity": 10,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "title": "39-42",
+              "availableQuantityMetafield": null,
+              "product": { "title": "Occulto Tennissocke SUMMER" }
+            }
+          }
+        ]
+      },
+      "buyerJourney": { "step": "CHECKOUT_INTERACTION" }
+    },
+    "output": {
+      "operations": [
+        {
+          "validationAdd": {
+            "errors": []
+          }
+        }
+      ]
+    }
+  }
+}
