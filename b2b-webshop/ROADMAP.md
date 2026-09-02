@@ -24,7 +24,7 @@ Diese Liste ist der Tracking-Ort für den Fortschritt — bei jeder Session hier
 
 ## Tier 3 – Fehlt für "äußerst ansprechend" / Markenerlebnis
 
-- [x] Startseite ist noch Standard-Dawn/Trade-Theme-Baukasten-Layout, kein eigenes Design (090226): Hero von generischem `image-banner` (schmale Wide-Banner-Crop mit dunklem Overlay über einem grauen Einzelsocken-Foto) auf neue eigene Section `sections/hero-split.liquid` umgestellt — Zweispalten-Layout, links feste Markenfläche (scheme-5: Anthrazit/Gold) mit Überschrift/CTA, rechts großformatig ein echtes Occulto-Produktfoto (STEFFI-Pack, bunte Streifen, hohe Auflösung) statt KI-generiertem Bild (siehe "Bereits erledigt": KI-Bildgenerierung wurde für Markenbilder bereits verworfen). Rest der Startseite (Collections/Bestseller/Vorteile) unverändert, das war bereits akzeptabel gestaltet.
+- [x] Startseite ist noch Standard-Dawn/Trade-Theme-Baukasten-Layout, kein eigenes Design (090226): Hero von generischem `image-banner` auf neue eigene Section `sections/hero-split.liquid` umgestellt — Zweispalten-Layout, links feste Markenfläche (scheme-5: Anthrazit/Gold) mit Überschrift/CTA, rechts großformatig ein Bild. **Bild zweimal iteriert**: erster Versuch war ein reines Produktfoto (STEFFI-Pack, 3 Socken auf Weiß) — Martin fand das noch nicht überzeugend genug. Zweiter Versuch: echtes redaktionelles Lifestyle-Foto aus dem Occulto-Lookbook-PDF extrahiert (PyMuPDF, Bild "BEST DAD"-Socke am Fuß, sitzend auf Barhocker, hohe Auflösung 1589×2303) statt reinem Produktfoto — per Staged-Upload zu Shopify Files hochgeladen (`occulto-hero-best-dad.jpg`, brauchte neuen App-Scope `write_files`). Kein KI-generiertes Bild verwendet (siehe "Bereits erledigt": KI-Bildgenerierung wurde für Markenbilder bereits verworfen). Rest der Startseite (Collections/Bestseller/Vorteile) unverändert, das war bereits akzeptabel gestaltet.
 - [ ] Keine echte Markenerzählung (Über-uns, Herkunft, Qualität, Made in Germany?)
 - [ ] Kein Social Proof (Handelspartner-Logos, Zahlen, Testimonials)
 - [ ] Standard-Shopify-Transaktionsmails (Bestellbestätigung, Willkommen als Handelspartner) unbranded
@@ -35,6 +35,7 @@ Diese Liste ist der Tracking-Ort für den Fortschritt — bei jeder Session hier
 - [ ] AGB und Datenschutzerklärung sind Entwürfe, noch nicht anwaltlich geprüft
 - [ ] Keine echte Performance-Messung (Lighthouse/PageSpeed) — hochskalierte Bilder evtl. Ladezeit verschlechtert
 - [ ] Mobile-Ansicht nie wirklich verifiziert (Browser-Resize-Tool funktionierte nicht zuverlässig)
+- [ ] **JTL-Wawi-Artikelstruktur passt nicht zur Shopify-Struktur** (090226): Shopify hat jetzt ~100 Einzelprodukte (nur Größe als Variante pro Farbe) — JTL-Wawis Standard-Verhalten ist aber ein Vaterartikel pro Style mit Farbe+Größe zusammen als Varianten. Der JTL-Connector (Shopify-seitige Konfiguration geprüft) hat **keine** Einstellung dafür — das muss in JTL-Wawi selbst gelöst werden (jede Farbe als eigener Vaterartikel, nur Größe als Kind). Martin ändert das in JTL-Wawi, noch nicht umgesetzt. Risiko bis dahin: der nächste volle Sync könnte Duplikate anlegen oder Preise/Bestände am falschen Produkt aktualisieren. Erst an einem Testartikel prüfen, bevor der ganze Katalog läuft — siehe [[project-b2b-webshop-overview]] für Details.
 
 ## Bereits erledigt (Referenz)
 

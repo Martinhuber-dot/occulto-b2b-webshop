@@ -28,7 +28,7 @@ api_version = "2026-10"
 # Read-only scopes for Phase A discovery (products, customers, orders, B2B, markets, metafields, theme, pricing).
 # Write scopes will be added later, per phase, once the corresponding feature is actually built.
 # write_products added for mirroring live inventory into a variant metafield (5-pack order-quantity rule).
-scopes = "read_products,read_product_listings,write_products,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,write_discounts,read_themes,read_locations,read_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_metaobjects,write_metaobject_definitions"
+scopes = "read_products,read_product_listings,write_products,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,write_discounts,read_themes,read_locations,read_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_metaobjects,write_metaobject_definitions,read_files,write_files"
 
 [auth]
 redirect_urls = [ "https://b2b-app.occulto.de/api/auth" ]
