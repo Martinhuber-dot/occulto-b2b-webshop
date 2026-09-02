@@ -22,6 +22,16 @@
   assign quantity_min = pack_step
   assign quantity_step = pack_step
   assign input_min = min | default: quantity_min
+
+  assign quantity_max = null
+  if variant.inventory_management == 'shopify' and variant.inventory_policy != 'continue'
+    assign quantity_max = variant.inventory_quantity | at_least: 0
+  endif
+  if variant.quantity_rule.max != null
+    if quantity_max == null or variant.quantity_rule.max < quantity_max
+      assign quantity_max = variant.quantity_rule.max
+    endif
+  endif
 -%}
 
 <quantity-input class="quantity cart-quantity">
@@ -41,8 +51,8 @@
     data-cart-quantity="{{ cart | item_count_for_variant: variant.id }}"
     min="{{ input_min }}"
     data-min="{{ quantity_min }}"
-    {% if variant.quantity_rule.max != null %}
-      max="{{ variant.quantity_rule.max }}"
+    {% if quantity_max != null %}
+      max="{{ quantity_max }}"
     {% endif %}
     step="{{ quantity_step }}"
     {% # theme-check-enable %}
