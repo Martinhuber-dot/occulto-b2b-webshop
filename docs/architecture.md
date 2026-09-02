@@ -44,18 +44,18 @@ Shopify Store "B2B-Occulto" (ri1udz-iw.myshopify.com / b2b.occulto.de)
 - Händler-Registrierungsformular (Theme) + App-Proxy-Backend-Route
 - Admin-Freigabeseite mit nativen B2B-Company-Mutationen (Company/Location anlegen, Kontakt zuweisen, native Willkommens-E-Mail)
 - Preis-/Kaufsperre für nicht freigeschaltete Besucher (Theme-Ebene), live geprüft — **inkl. Quick-Add-Buttons auf Kollektionskarten** (`card-product.liquid`), seit 2026-08-30 ebenfalls gegen `dealer-approved` abgesichert (vorher offene Lücke, jetzt geschlossen und live)
-- Mindestbestellwert 350 € netto als Shopify Function, **live aktiv**, automatisiert getestet
-- Zahlungsarten Rechnung + Vorkasse, nativ konfiguriert (Vorkasse-IBAN noch als Platzhalter zu befüllen)
+- Mindestbestellwert 500 € netto als Shopify Function, **live aktiv**, automatisiert getestet (erhöht von 350 € am 2026-09-01)
+- Gebinde-Regel: Bestellung nur in 5er-Schritten je Position (außer beim exakten Restbestand), als Shopify Function `pack-quantity-rule` **live aktiv** seit 2026-09-02, gespeist über einen Inventory-Webhook, der den Lagerstand in ein Variant-Metafield spiegelt; Quick-Order-Liste zeigt denselben Bestand als Badge pro Größe
+- Zahlungsarten Rechnung + Vorkasse, nativ konfiguriert (Vorkasse-IBAN seit 2026-09-02 hinterlegt: DE37 7115 0000 0020 1128 76)
 - "Händler werden" im Hauptmenü verlinkt
 - Deutsch als Sprache übersetzt und **veröffentlicht** (Shopify Translate & Adapt, Auto-Translate)
+- **App-Hosting eingerichtet** (2026-09-01): `b2b-webshop` läuft unter `https://b2b-app.occulto.de` (dogado-Hosting). Registrierungs-/Freigabe-Route damit erstmals real durchgeklickt — zwei Bugs dabei gefunden und gefixt (App-Proxy-Routenpfad, Redirect-Host); siehe [b2b-workflows.md](./b2b-workflows.md).
 - **Frontend-Design an das bestehende B2C-Branding (www.occulto.de) angeglichen**: echtes Occulto-Logo (`docs/brand/occulto-logo.svg`, aus der Live-Seite extrahiert) als Theme-Logo hinterlegt, alle 5 Farbschemata auf die reale Occulto-Palette umgestellt (Schwarz/Weiß/Anthrazit `#1c1c1c`/`#2e2e2d`, Gold-Akzent `#f9ca4f` sparsam für Sale-Badge/CTA), Header auf helles Schema umgestellt (vorher dunkles Trade-Standardschema, worauf das schwarze Logo unlesbar war) — live auf dem Theme "Trade"
 - **Typografie**: Überschrift- und Fließtext-Font von den Trade-Standardschriften (`dm_sans_n5`/`jost_n4`) auf `assistant_n4` umgestellt — einziger im Theme-Schema bereits gültiger Font-Handle, optisch näher am schlichten Helvetica/Arial-artigen Grotesk von occulto.de als die vorherigen Zierschriften
 
 **Blockiert / offen (brauchen den Nutzer):**
-- **App-Hosting**: `b2b-webshop` läuft nirgends dauerhaft. Registrierungs- und Freigabe-Route sind fertig programmiert (Typecheck+Lint sauber), aber noch nie live durchgeklickt worden. Einen Hosting-Anbieter einzurichten erfordert eine Account-Anlage bei einem Drittanbieter — das kann/darf diese Automatisierung nicht eigenständig tun. → **Nutzer muss `npm run dev` in `b2b-webshop/` selbst starten** (lokal gegen den Dev-Store `occulto-b2b-dev.myshopify.com`) oder einen Hosting-Anbieter selbst einrichten.
 - **JTL-Produktimport**: nur 1 Testprodukt aktuell synchronisiert ("Occulto Tennissocks SUMMER"). Der Connector ist eine Sync-Queue, kein Katalog-Browser – die Kategorie "08_Einzelhandel" muss der Nutzer direkt in JTL-Wawi prüfen/synchronisieren.
-- **Vorkasse-IBAN**: echte Bankverbindung von Occulto fehlt noch (Platzhalter in den Zahlungseinstellungen), kann nicht fabriziert werden.
-- **Deutsch als Standardsprache des Shops** (nicht nur veröffentlicht, sondern als Default gesetzt) — client wollte laut Master-Prompt Deutsch als primäre Sprache; noch nicht umgesetzt, da das eine strukturellere Store-weite Einstellung ist (betrifft z. B. Standardsprache für Checkout/Notifications) und daher lieber mit dem Nutzer abgestimmt werden sollte statt blind umgeschaltet zu werden.
+- Kleinerer kosmetischer Rest: "Händler werden" im Hauptmenü rendert unter dem deutschsprachigen Storefront teils als "Become a dealer" (stray Auto-Translate-Eintrag) — nicht business-kritisch, Store ist noch passwortgeschützt.
 
 ## Secrets / Environment
 

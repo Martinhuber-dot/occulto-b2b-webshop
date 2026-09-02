@@ -685,6 +685,25 @@ quick-order-list .pagination-wrapper {
   }
 }
 
+.catalog-order-list__product-row {
+  background-color: rgba(var(--color-foreground), 0.03);
+}
+
+.catalog-order-list__product-row .product-item__inner {
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+.catalog-order-list__product-row .variant-item__name {
+  font-size: 1.6rem;
+}
+
+.quick-order-list-login-gate {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  text-align: center;
+}
+
 quick-order-list .tax-note {
   margin: 0 0 2rem;
   display: block;

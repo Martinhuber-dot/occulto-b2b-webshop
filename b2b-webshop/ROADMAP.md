@@ -5,17 +5,19 @@ Diese Liste ist der Tracking-Ort für den Fortschritt — bei jeder Session hier
 
 ## Tier 1 – Blocker (verhindern aktiv den Verkauf)
 
+**Tier 1 vollständig abgeschlossen (090226).** Weiter geht's mit Tier 2.
+
 - [x] Sofortmaßnahme (083126): 42 Produkte ohne Bild (nicht 46, exakte Prüfung per API) auf Status "Entwurf" gesetzt → keine Platzhalter-Boxen mehr im Shop sichtbar (58 aktive Produkte bleiben, alle mit Bild)
   - [ ] Langfristig: echte Fotos für die Produkte mit echtem Lagerbestand beschaffen und wieder aktivieren — Priorität: MOMO 001+002, GUSTO 002+003 (je 41 Stück), Kind Fußball + Schulkind 001 (je 24), SUMMER 010 (17), NALA 001 (6)
   - [ ] Business-Entscheidung nötig: Rest hat 0 oder negativen Bestand (RIO 012–024, SUMMER 011–012, BUNNY 001–006, GUSTO 001+004, ROBIN 002+003, DREAMER 001–003, Schulkind 002+003, NALA 002, OSWALD 001+002, Rudi 001+002, GERLINDE, CLAUS) — dauerhaft einstellen oder nachproduzieren?
 - [x] Adventskalender-Kachel auf Startseite (083126): Kachel führte ins Leere (beide Produkte 0 Bestand + kein Bild, jetzt Entwurf) — Kachel entfernt statt mit Bild kaschiert, Sortiment-Grid jetzt sauber 3-spaltig (Tennissocken/Sneaker/Kinder). Wieder aktivieren sobald Saisonware für Weihnachten bestückt + fotografiert ist.
 - [x] Mindestbestellwert (083126): von 350€ auf 500€ netto angehoben (Martins Entscheidung) — Shopify Function `minimum-order-value` angepasst + getestet (3/3 Tests grün) + deployt als App-Version b2b-webshop-9, AGB-Text aktualisiert, Homepage-Kachel "Warum Occulto?" aktualisiert. Alles live verifiziert.
-- [ ] Keine Mengenstaffel-/Rabattpreise sichtbar (z.B. ab 50 Stück -5%, ab 100 Stück -10%) — WICHTIGER FUND: Shop läuft auf Shopify **Basic**-Plan, native B2B-Preislisten mit Mengenstaffeln sind Plus-exklusiv und stehen NICHT zur Verfügung. Optionen: (a) Drittanbieter-App für Staffelpreise, (b) eigene Shopify-Function für automatischen Mengenrabatt. Noch nicht entschieden/umgesetzt — nächster Schritt für morgen.
-- [ ] Kein sichtbarer Lagerbestand pro Größe auf Produktseite
+- [x] Keine Mengenstaffel-/Rabattpreise sichtbar (090226): Entscheidung mit Martin final abgestimmt — Rabatt nach **Bestellsumme (netto)**, nicht nach Stückzahl/Variante: **5% ab 2.500€, 10% ab 5.000€**. Umgesetzt als eigene Shopify Function `extensions/order-value-discount` (Order Discount API, `purchase.order-discount.run`, Rabatt auf `orderSubtotal`), 3/3 Tests grün, deployt (b2b-webshop-14) und als automatischer Store-Rabatt "Mengenrabatt nach Bestellsumme" **Active** gesetzt (`discountAutomaticAppCreate`). Dafür musste der App-Scope um `write_discounts` erweitert und im Admin neu re-konsentiert werden (Apps → b2b-webshop → "Update").
+- [x] Kein sichtbarer Lagerbestand pro Größe auf Produktseite (090226): erledigt als Nebenprodukt der 5er-Gebinde-Regel (086126/090126) — die Quick-Order-List-Section sitzt bereits im Produkt-Template (`templates/product.json`) und zeigt jetzt pro Größenzeile ein Stock-Badge (auf Lager/knapp/ausverkauft mit genauer Menge, `snippets/quick-order-list-row-inventory.liquid`), gespeist vom `available_quantity`-Webhook-Mirror. Live seit b2b-webshop-12 (090226).
 
 ## Tier 2 – Fehlt für "einfache Bestellung" (Kernanspruch B2B)
 
-- [ ] Kein produktübergreifender Sammel-Bestelltisch (aktuell nur Quick-Order pro Einzelprodukt)
+- [x] Kein produktübergreifender Sammel-Bestelltisch (090226): neue Seite "Schnellbestellung" (`/pages/schnellbestellung`, neue Section `sections/catalog-order-list.liquid`) listet alle Produkte der Collection "all" mit allen Größenvarianten in einer einzigen Tabelle, wiederverwendet dieselben Zeilen-/Cart-Bausteine wie die bestehende Produktseiten-Quick-Order-Liste. Live, im Hauptmenü verlinkt (nach "Produkte"). **Nebenbei entdeckt und mitgefixt**: die bestehende Quick-Order-Liste auf der einzelnen Produktseite (`sections/quick-order-list.liquid`) UND das Bulk-Add-Modal von den Kollektionskarten (`sections/bulk-quick-order-list.liquid`) hatten **gar kein** `dealer-approved`-Gate — jeder anonyme Besucher konnte dort Nettopreise sehen und in den Warenkorb legen. Beide jetzt mit demselben Gate wie `price.liquid`/`buy-buttons.liquid` abgesichert, live verifiziert (anonym sieht jetzt nur noch "Anmelden für Händlerpreis").
 - [ ] Kein CSV/Excel-Bulk-Upload für Bestellungen
 - [ ] Kein "letzte Bestellung wiederholen"/Reorder-Button
 - [ ] Rechnung/Vorkasse ohne automatisierte Bonitätsprüfung (bremst schnelle Freigabe)

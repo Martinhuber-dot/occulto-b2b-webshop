@@ -3392,6 +3392,20 @@
         "name": "Schnelle Bestellliste"
       }
     },
+    "catalog-order-list": {
+      "name": "Sammelbestellung (alle Produkte)",
+      "settings": {
+        "collection": {
+          "label": "Kollektion"
+        },
+        "products_per_page": {
+          "label": "Produkte pro Seite"
+        }
+      },
+      "presets": {
+        "name": "Sammelbestellung"
+      }
+    },
     "disclosures": {
       "name": "Pflichtangaben",
       "settings": {

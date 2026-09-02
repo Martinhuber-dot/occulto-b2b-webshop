@@ -433,6 +433,11 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "catalog_order_list": {
+      "heading": "Bulk order",
+      "cart_total": "Cart total",
+      "no_products": "No products are currently available for bulk ordering."
     }
   },
   "localization": {

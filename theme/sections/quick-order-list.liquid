@@ -20,11 +20,26 @@
   }
 {%- endstyle -%}
 
-{% render 'quick-order-list',
-  product: product,
-  show_image: section.settings.show_image,
-  show_sku: section.settings.show_sku
-%}
+{%- liquid
+  assign b2b_price_visible = false
+  if customer and customer.tags contains 'dealer-approved'
+    assign b2b_price_visible = true
+  endif
+-%}
+
+{%- if b2b_price_visible -%}
+  {% render 'quick-order-list',
+    product: product,
+    show_image: section.settings.show_image,
+    show_sku: section.settings.show_sku
+  %}
+{%- else -%}
+  <div class="quick-order-list-login-gate page-width section-{{ section.id }}-padding">
+    <a href="{{ routes.account_login_url }}" class="button button--secondary">
+      {{ 'products.product.price.login_to_see_price' | t }}
+    </a>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {

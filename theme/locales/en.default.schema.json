@@ -2782,6 +2782,20 @@
         "name": "Quick order list"
       }
     },
+    "catalog-order-list": {
+      "name": "Bulk order (all products)",
+      "settings": {
+        "collection": {
+          "label": "Collection"
+        },
+        "products_per_page": {
+          "label": "Products per page"
+        }
+      },
+      "presets": {
+        "name": "Bulk order"
+      }
+    },
     "related-products": {
       "name": "Related products",
       "settings": {

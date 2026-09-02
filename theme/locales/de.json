@@ -432,6 +432,11 @@
       "min_error": "Dieser Artikel hat ein Minimum von {{ min }}",
       "max_error": "Dieser Artikel hat ein Maximum von {{ max }}",
       "step_error": "Du kannst diesen Artikel nur in Abstufungen von {{ step }} hinzufügen."
+    },
+    "catalog_order_list": {
+      "heading": "Sammelbestellung",
+      "cart_total": "Warenkorb gesamt",
+      "no_products": "Aktuell sind keine Produkte für die Sammelbestellung verfügbar."
     }
   },
   "localization": {

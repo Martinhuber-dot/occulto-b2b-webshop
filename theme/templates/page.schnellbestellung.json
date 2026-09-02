@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "catalog-order-list": {
+      "type": "catalog-order-list",
+      "settings": {
+        "collection": "all",
+        "products_per_page": 20,
+        "show_sku": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 16,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "catalog-order-list"
+  ]
+}

@@ -30,16 +30,32 @@ JTL-Wawi holt den Kunden bei nächster eigener Sync-Runde (Customer: pull unters
 
 ## Zugriffsschutz
 
-`customer.tags contains 'dealer-approved'` ist die einzige Bedingung, die Preis und Kaufmöglichkeit freischaltet (`theme/snippets/price.liquid`, `theme/snippets/buy-buttons.liquid`, seit 2026-08-30 auch `theme/snippets/card-product.liquid` für die Quick-Add-Buttons auf Kollektionskacheln). Ohne diesen Tag: "Log in for dealer price" / "Anmelden für Händlerpreis" statt Preis, kein Warenkorb-/Quick-Add-Button irgendwo im Theme.
+`customer.tags contains 'dealer-approved'` ist die einzige Bedingung, die Preis und Kaufmöglichkeit freischaltet (`theme/snippets/price.liquid`, `theme/snippets/buy-buttons.liquid`, seit 2026-08-30 auch `theme/snippets/card-product.liquid` für die Quick-Add-Buttons auf Kollektionskacheln, seit 2026-09-02 auch `theme/sections/quick-order-list.liquid` und `theme/sections/bulk-quick-order-list.liquid`). Ohne diesen Tag: "Log in for dealer price" / "Anmelden für Händlerpreis" statt Preis, kein Warenkorb-/Quick-Add-Button irgendwo im Theme.
+
+**2026-09-02 gefundene und gefixte Lücke**: die beiden oben genannten Quick-Order-Sections hatten das Gate schlicht nicht — jeder anonyme Besucher konnte auf jeder Produktseite Nettopreise sehen und direkt in den Warenkorb legen (die Kollektionskarten selbst waren bereits korrekt gegated, aber die dahinterliegenden Section-Endpunkte, die per `?section_id=` nachgeladen werden, nicht). Wichtige Lektion: ein per Theme-UI gegateter Trigger-Button reicht nicht — der darunterliegende `?section_id=`-Endpunkt muss selbst prüfen, da er direkt aufrufbar ist.
+
+## Schnellbestellung (produktübergreifend)
+
+Neue Seite `/pages/schnellbestellung` (Section `theme/sections/catalog-order-list.liquid`, im Hauptmenü verlinkt) listet alle Produkte einer Collection (Default: `all`) mit allen Größenvarianten in einer Tabelle, damit ein Händler nicht jede Produktseite einzeln öffnen muss. Baut auf denselben Zeilen-Snippets wie die einzelne Produktseiten-Quick-Order-Liste auf, zeigt aber die Summe des gesamten Warenkorbs statt nur eines Produkts. Ebenfalls über `dealer-approved` gegated.
 
 ## Mindestbestellwert
 
-Shopify Function `extensions/minimum-order-value/` – blockiert Checkout serverseitig unter 350 € netto (`cart.cost.subtotalAmount`). Aktiv als Checkout-Regel "Mindestbestellwert 350€ netto" im Store. Ändern: Konstante `MIN_ORDER_NET` in `src/cart_validations_generate_run.ts`, dann `shopify app deploy`.
+Shopify Function `extensions/minimum-order-value/` – blockiert Checkout serverseitig unter 500 € netto (`cart.cost.subtotalAmount`, erhöht von 350 € am 2026-09-01). Aktiv als Checkout-Regel "Mindestbestellwert 500€ netto" im Store. Ändern: Konstante `MIN_ORDER_NET` in `src/cart_validations_generate_run.ts`, dann `shopify app deploy`.
+
+## Gebinde-Regel (5er-Schritte)
+
+Shopify Function `extensions/pack-quantity-rule/` – blockiert Checkout serverseitig, wenn eine Position nicht in 5er-Schritten bestellt wird, außer die Menge entspricht exakt dem noch verfügbaren Restbestand (Ausverkauf der letzten Stück erlaubt). Aktiv als Checkout-Regel "5er-Gebinde-Pflicht" im Store, deployt/aktiviert 2026-09-02.
+
+Da Functions keinen Live-Zugriff auf Inventory haben, spiegelt ein Webhook (`app/routes/webhooks.inventory_levels.update.tsx`, Topic `inventory_levels/update`) den Lagerstand bei jeder Änderung in ein Variant-Metafield (`app--416332316673.available_quantity`), das die Function ausliest. Die Quick-Order-Liste im Theme zeigt denselben Bestand pro Größe als Badge an (`theme/snippets/quick-order-list-row-inventory.liquid`).
+
+## Mengenrabatt nach Bestellsumme
+
+Shopify Function `extensions/order-value-discount/` (Order Discount API) – automatischer Rabatt auf die gesamte Bestellsumme (netto), gestaffelt: **5% ab 2.500€, 10% ab 5.000€**. Aktiv als automatischer Store-Rabatt "Mengenrabatt nach Bestellsumme" (`discountAutomaticAppCreate`), erfordert den App-Scope `write_discounts`. Grund für Function statt native B2B-Preisliste: Shop läuft auf Shopify **Basic**-Plan, native B2B-Preislisten mit Mengenstaffeln sind Plus-exklusiv. Ändern: Array `TIERS` in `src/run.ts`, dann `shopify app deploy`.
 
 ## Zahlungsarten
 
 Nativ als "Manual Payment Methods" im Store konfiguriert:
-- **Bank Deposit** = Vorkasse (Zahlungsanweisung enthält aktuell einen **Platzhalter** für die echte Bankverbindung – vor Go-Live ausfüllen!)
+- **Bank Deposit** = Vorkasse (echte IBAN seit 2026-09-02 hinterlegt: DE37 7115 0000 0020 1128 76 — Kontoinhaber/BIC/Bankname nicht separat angegeben, nur die vom Nutzer übermittelte IBAN)
 - **Rechnung** = custom payment method
 
 Beide aktuell für *jeden* freigegebenen Händler sichtbar (MVP-Annahme laut Prompt zulässig). Individuelle Zahlungsbedingungen pro Kunde (Zahlungsziel, Kreditlimit aus JTL) sind noch nicht abgebildet.

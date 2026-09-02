@@ -1,8 +1,22 @@
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign b2b_price_visible = false
+  if customer and customer.tags contains 'dealer-approved'
+    assign b2b_price_visible = true
+  endif
+-%}
 
-{% render 'quick-order-list', product: product, show_image: true, show_sku: true, is_modal: true %}
+{%- if b2b_price_visible -%}
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+  {% render 'quick-order-list', product: product, show_image: true, show_sku: true, is_modal: true %}
+{%- else -%}
+  <div class="quick-order-list-login-gate page-width">
+    <a href="{{ routes.account_login_url }}" class="button button--secondary">
+      {{ 'products.product.price.login_to_see_price' | t }}
+    </a>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
