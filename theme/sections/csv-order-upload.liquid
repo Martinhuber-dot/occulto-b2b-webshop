@@ -51,6 +51,9 @@
     <div class="page-width section-{{ section.id }}-padding csv-order-upload__wrapper">
       <h2 class="h3">{{ 'sections.csv_order.heading' | t }}</h2>
       <p class="csv-order-upload__hint">{{ 'sections.csv_order.hint' | t }}</p>
+      <a href="{{ 'csv-order-template.csv' | asset_url }}" class="csv-order-upload__template-link" download>
+        {{ 'sections.csv_order.download_template' | t }}
+      </a>
 
       <csv-order-upload data-endpoint="{{ shop.url }}/apps/dealer/csv-order">
         <input type="file" accept=".csv,text/csv,text/plain" class="csv-order-upload__input">

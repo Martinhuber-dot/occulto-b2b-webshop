@@ -13,24 +13,12 @@
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 16,
-        "padding_bottom": 16
-      }
-    },
-    "catalog-order-list": {
-      "type": "catalog-order-list",
-      "settings": {
-        "collection": "all",
-        "products_per_page": 20,
-        "show_sku": true,
-        "color_scheme": "scheme-2",
-        "padding_top": 16,
-        "padding_bottom": 36
+        "padding_bottom": 48
       }
     }
   },
   "order": [
     "main",
-    "csv-order-upload",
-    "catalog-order-list"
+    "csv-order-upload"
   ]
 }

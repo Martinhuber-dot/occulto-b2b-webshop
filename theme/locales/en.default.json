@@ -440,8 +440,9 @@
       "no_products": "No products are currently available for bulk ordering."
     },
     "csv_order": {
-      "heading": "CSV order",
+      "heading": "Bulk order",
       "hint": "Upload a file in \"SKU;Quantity\" format, one line per item — e.g. OCC123;20",
+      "download_template": "Download template",
       "uploading": "Checking file …",
       "summary": "[valid] of [count] lines found and available.",
       "error": "The file could not be processed. Please check the format (SKU;Quantity).",

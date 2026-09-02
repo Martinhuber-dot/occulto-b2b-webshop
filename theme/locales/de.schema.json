@@ -3407,9 +3407,9 @@
       }
     },
     "csv-order": {
-      "name": "CSV-Bestellung",
+      "name": "Massenbestellung (CSV)",
       "presets": {
-        "name": "CSV-Bestellung"
+        "name": "Massenbestellung (CSV)"
       }
     },
     "hero-split": {

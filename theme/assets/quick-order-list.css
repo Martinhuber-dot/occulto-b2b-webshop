@@ -707,7 +707,17 @@ quick-order-list .pagination-wrapper {
 .csv-order-upload__hint {
   opacity: 0.75;
   margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.csv-order-upload__template-link {
+  display: inline-block;
   margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+[data-csv-order-add-all][hidden] {
+  display: none;
 }
 
 .csv-order-upload__input {

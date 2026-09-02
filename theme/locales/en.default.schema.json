@@ -2797,9 +2797,9 @@
       }
     },
     "csv-order": {
-      "name": "CSV order",
+      "name": "Bulk order (CSV)",
       "presets": {
-        "name": "CSV order"
+        "name": "Bulk order (CSV)"
       }
     },
     "hero-split": {

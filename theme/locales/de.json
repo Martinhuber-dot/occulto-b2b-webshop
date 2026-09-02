@@ -439,8 +439,9 @@
       "no_products": "Aktuell sind keine Produkte für die Sammelbestellung verfügbar."
     },
     "csv_order": {
-      "heading": "CSV-Bestellung",
+      "heading": "Massenbestellung",
       "hint": "Datei im Format „SKU;Menge“ hochladen, eine Position pro Zeile — z. B. OCC123;20",
+      "download_template": "Vorlage herunterladen",
       "uploading": "Datei wird geprüft …",
       "summary": "[valid] von [count] Positionen gefunden und verfügbar.",
       "error": "Die Datei konnte nicht verarbeitet werden. Bitte Format prüfen (SKU;Menge).",

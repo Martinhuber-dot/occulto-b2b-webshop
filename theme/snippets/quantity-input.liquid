@@ -8,7 +8,21 @@
 
   Usage:
   {% render 'quantity-input' variant: variant %}
+
+  Occulto verkauft ausschließlich in 5er-Gebinden (siehe
+  extensions/pack-quantity-rule, dieselbe Konstante PACK_STEP = 5). Es gibt
+  keinen B2B-Preislisten-Katalog auf diesem Store, aber jede Shopify-Variante
+  hat trotzdem implizit eine native quantity_rule von {min: 1, increment: 1}
+  (nicht nil!) — ein `| default:`-Fallback darauf greift also nie, deshalb
+  hier bewusst hart auf 5 gesetzt statt von variant.quantity_rule abzuleiten.
 {% endcomment %}
+
+{%- liquid
+  assign pack_step = 5
+  assign quantity_min = pack_step
+  assign quantity_step = pack_step
+  assign input_min = min | default: quantity_min
+-%}
 
 <quantity-input class="quantity cart-quantity">
   <button class="quantity__button" name="minus" type="button" data-target="decrement-{{ variant.id }}">
@@ -25,12 +39,12 @@
     {% # theme-check-disable %}
     value="{{ cart | item_count_for_variant: variant.id }}"
     data-cart-quantity="{{ cart | item_count_for_variant: variant.id }}"
-    min="{{ min }}"
-    data-min="{{ variant.quantity_rule.min }}"
+    min="{{ input_min }}"
+    data-min="{{ quantity_min }}"
     {% if variant.quantity_rule.max != null %}
       max="{{ variant.quantity_rule.max }}"
     {% endif %}
-    step="{{ variant.quantity_rule.increment }}"
+    step="{{ quantity_step }}"
     {% # theme-check-enable %}
     aria-label="{{ 'products.product.quantity.input_label' | t: product: variant.title | escape }}"
     id="Quantity-{{ variant.id }}"
