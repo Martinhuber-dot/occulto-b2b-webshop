@@ -7,26 +7,34 @@
 {{ 'section-customer-welcome-strip.css' | asset_url | stylesheet_tag }}
 
 {%- if customer -%}
+  {%- liquid
+    assign welcome_name = customer.company.name | default: customer.first_name | default: customer.name
+    assign is_german = true
+    if localization.language.iso_code != 'de'
+      assign is_german = false
+    endif
+  -%}
   <div class="color-{{ section.settings.color_scheme }} gradient">
     <div class="page-width customer-welcome-strip">
       <h2 class="customer-welcome-strip__heading">
-        {{-
-          'sections.customer_welcome.greeting'
-          | t: name: customer.company.name | default: customer.first_name | default: customer.name
-        -}}
+        {%- if is_german -%}
+          Willkommen zurück, {{ welcome_name }}
+        {%- else -%}
+          Welcome back, {{ welcome_name }}
+        {%- endif -%}
       </h2>
       <div class="customer-welcome-strip__links">
         <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">
-          {{ 'sections.customer_welcome.browse_products' | t }}
+          {%- if is_german -%}Produkte ansehen{%- else -%}Browse products{%- endif -%}
         </a>
         <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">
-          {{ 'sections.customer_welcome.quick_order' | t }}
+          {%- if is_german -%}Schnellbestellung{%- else -%}Quick order{%- endif -%}
         </a>
         <a href="{{ routes.account_url }}" class="button button--secondary">
-          {{ 'sections.customer_welcome.my_orders' | t }}
+          {%- if is_german -%}Meine Bestellungen{%- else -%}My orders{%- endif -%}
         </a>
         <a href="{{ routes.account_url }}" class="button button--secondary">
-          {{ 'sections.customer_welcome.my_account' | t }}
+          {%- if is_german -%}Mein Konto{%- else -%}My account{%- endif -%}
         </a>
       </div>
     </div>

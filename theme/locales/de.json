@@ -259,7 +259,7 @@
     "cart": {
       "cart": "Warenkorb"
     },
-    "customer_welcome": {
+    "dealer_welcome_strip": {
       "greeting": "Willkommen zurück, {{ name }}",
       "browse_products": "Produkte ansehen",
       "quick_order": "Schnellbestellung",

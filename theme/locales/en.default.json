@@ -259,7 +259,7 @@
     "cart": {
       "cart": "Cart"
     },
-    "customer_welcome": {
+    "dealer_welcome_strip": {
       "greeting": "Welcome back, {{ name }}",
       "browse_products": "Browse products",
       "quick_order": "Quick order",
