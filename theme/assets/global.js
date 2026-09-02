@@ -247,8 +247,17 @@ class QuantityInput extends HTMLElement {
     const previousValue = this.input.value;
 
     if (event.target.name === 'plus') {
-      if (parseInt(this.input.dataset.min) > parseInt(this.input.step) && this.input.value == 0) {
+      const step = parseInt(this.input.step) || 1;
+      const max = this.input.max !== '' ? parseInt(this.input.max) : null;
+      const current = parseInt(this.input.value) || 0;
+
+      if (parseInt(this.input.dataset.min) > step && this.input.value == 0) {
         this.input.value = this.input.dataset.min;
+      } else if (max !== null && current < max && current + step > max) {
+        // Nächster 5er-Schritt würde den Bestand überschreiten (Occulto verkauft
+        // in 5er-Gebinden) — letzte Stufe springt stattdessen auf den exakten
+        // Restbestand, statt den Kauf der letzten Stücke zu blockieren.
+        this.input.value = max;
       } else {
         this.input.stepUp();
       }
@@ -1366,11 +1375,13 @@ class BulkAdd extends HTMLElement {
     const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
 
-    if (inputValue < event.target.dataset.min) {
+    const isExactRemainingStock = event.target.max !== '' && inputValue === parseInt(event.target.max);
+
+    if (inputValue < event.target.dataset.min && !isExactRemainingStock) {
       this.setValidity(event, index, window.quickOrderListStrings.min_error.replace('[min]', event.target.dataset.min));
     } else if (inputValue > parseInt(event.target.max)) {
       this.setValidity(event, index, window.quickOrderListStrings.max_error.replace('[max]', event.target.max));
-    } else if (inputValue % parseInt(event.target.step) != 0) {
+    } else if (inputValue % parseInt(event.target.step) != 0 && !isExactRemainingStock) {
       this.setValidity(event, index, window.quickOrderListStrings.step_error.replace('[step]', event.target.step));
     } else {
       event.target.setCustomValidity('');

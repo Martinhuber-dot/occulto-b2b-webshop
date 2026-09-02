@@ -137,9 +137,11 @@ if (!customElements.get('quick-order-list')) {
         const targetStep = parseInt(target.step);
 
         if (target.max) {
+          const targetMax = parseInt(target.max);
           return (
             targetValue == 0 ||
-            (targetValue >= targetMin && targetValue <= parseInt(target.max) && targetValue % targetStep == 0)
+            targetValue === targetMax || // exakter Restbestand ist erlaubt, auch außerhalb des 5er-Rasters
+            (targetValue >= targetMin && targetValue <= targetMax && targetValue % targetStep == 0)
           );
         } else {
           return targetValue == 0 || (targetValue >= targetMin && targetValue % targetStep == 0);
