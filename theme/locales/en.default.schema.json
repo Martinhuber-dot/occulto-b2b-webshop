@@ -2802,6 +2802,35 @@
         "name": "CSV order"
       }
     },
+    "hero-split": {
+      "name": "Split hero (image + text)",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "overline": {
+          "label": "Overline"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "button_label": {
+          "label": "Button label"
+        },
+        "button_link": {
+          "label": "Button link"
+        },
+        "button_style_secondary": {
+          "label": "Use secondary button style"
+        }
+      },
+      "presets": {
+        "name": "Split hero"
+      }
+    },
     "related-products": {
       "name": "Related products",
       "settings": {

@@ -9,52 +9,17 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Willkommen, Handelspartner",
-            "text_style": "caption-with-letter-spacing"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Occulto Händlerportal",
-            "heading_size": "h1"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Produkte ansehen",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text",
-        "heading",
-        "button"
-      ],
+    "hero_split": {
+      "type": "hero-split",
       "settings": {
-        "image": "shopify://shop_images/robin-massbier-hero2.jpg",
-        "image_overlay_opacity": 50,
-        "image_height": "medium",
-        "desktop_content_position": "middle-left",
-        "show_text_box": false,
-        "desktop_content_alignment": "left",
-        "color_scheme": "scheme-5",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": false
+        "image": "shopify://shop_images/steffiauslegerpackjpg-736840.jpg",
+        "overline": "Willkommen, Handelspartner",
+        "heading": "Occulto Händlerportal",
+        "text": "<p>Entdecken Sie das aktuelle Occulto Sortiment und bestellen Sie direkt zu Ihren individuellen Händlerkonditionen.</p>",
+        "button_label": "Produkte ansehen",
+        "button_link": "shopify://collections/all",
+        "button_style_secondary": false,
+        "color_scheme": "scheme-5"
       }
     },
     "customer_welcome": {
@@ -218,7 +183,7 @@
     }
   },
   "order": [
-    "image_banner",
+    "hero_split",
     "customer_welcome",
     "rich_text",
     "collection_list",

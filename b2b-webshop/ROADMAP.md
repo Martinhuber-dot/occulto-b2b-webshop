@@ -24,7 +24,7 @@ Diese Liste ist der Tracking-Ort für den Fortschritt — bei jeder Session hier
 
 ## Tier 3 – Fehlt für "äußerst ansprechend" / Markenerlebnis
 
-- [ ] Startseite ist noch Standard-Dawn/Trade-Theme-Baukasten-Layout, kein eigenes Design
+- [x] Startseite ist noch Standard-Dawn/Trade-Theme-Baukasten-Layout, kein eigenes Design (090226): Hero von generischem `image-banner` (schmale Wide-Banner-Crop mit dunklem Overlay über einem grauen Einzelsocken-Foto) auf neue eigene Section `sections/hero-split.liquid` umgestellt — Zweispalten-Layout, links feste Markenfläche (scheme-5: Anthrazit/Gold) mit Überschrift/CTA, rechts großformatig ein echtes Occulto-Produktfoto (STEFFI-Pack, bunte Streifen, hohe Auflösung) statt KI-generiertem Bild (siehe "Bereits erledigt": KI-Bildgenerierung wurde für Markenbilder bereits verworfen). Rest der Startseite (Collections/Bestseller/Vorteile) unverändert, das war bereits akzeptabel gestaltet.
 - [ ] Keine echte Markenerzählung (Über-uns, Herkunft, Qualität, Made in Germany?)
 - [ ] Kein Social Proof (Handelspartner-Logos, Zahlen, Testimonials)
 - [ ] Standard-Shopify-Transaktionsmails (Bestellbestätigung, Willkommen als Handelspartner) unbranded

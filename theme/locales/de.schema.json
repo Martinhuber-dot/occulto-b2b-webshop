@@ -3412,6 +3412,35 @@
         "name": "CSV-Bestellung"
       }
     },
+    "hero-split": {
+      "name": "Split-Hero (Bild + Text)",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "overline": {
+          "label": "Überzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "button_label": {
+          "label": "Button-Beschriftung"
+        },
+        "button_link": {
+          "label": "Button-Link"
+        },
+        "button_style_secondary": {
+          "label": "Button als sekundären Stil anzeigen"
+        }
+      },
+      "presets": {
+        "name": "Split-Hero"
+      }
+    },
     "disclosures": {
       "name": "Pflichtangaben",
       "settings": {
