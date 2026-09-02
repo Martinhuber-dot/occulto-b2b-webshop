@@ -2796,6 +2796,12 @@
         "name": "Bulk order"
       }
     },
+    "csv-order": {
+      "name": "CSV order",
+      "presets": {
+        "name": "CSV order"
+      }
+    },
     "related-products": {
       "name": "Related products",
       "settings": {

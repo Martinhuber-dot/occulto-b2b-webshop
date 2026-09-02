@@ -704,6 +704,34 @@ quick-order-list .pagination-wrapper {
   text-align: center;
 }
 
+.csv-order-upload__hint {
+  opacity: 0.75;
+  margin-top: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.csv-order-upload__input {
+  display: block;
+  margin-bottom: 1.6rem;
+}
+
+.csv-order-upload__status {
+  margin-bottom: 1.6rem;
+}
+
+.csv-order-upload__results:not(:empty) {
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.csv-order-results__row--error {
+  color: rgb(199, 43, 43);
+}
+
+.csv-order-results__row--warning {
+  color: rgb(180, 120, 0);
+}
+
 quick-order-list .tax-note {
   margin: 0 0 2rem;
   display: block;

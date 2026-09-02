@@ -3406,6 +3406,12 @@
         "name": "Sammelbestellung"
       }
     },
+    "csv-order": {
+      "name": "CSV-Bestellung",
+      "presets": {
+        "name": "CSV-Bestellung"
+      }
+    },
     "disclosures": {
       "name": "Pflichtangaben",
       "settings": {

@@ -52,6 +52,10 @@ Da Functions keinen Live-Zugriff auf Inventory haben, spiegelt ein Webhook (`app
 
 Shopify Function `extensions/order-value-discount/` (Order Discount API) – automatischer Rabatt auf die gesamte Bestellsumme (netto), gestaffelt: **5% ab 2.500€, 10% ab 5.000€**. Aktiv als automatischer Store-Rabatt "Mengenrabatt nach Bestellsumme" (`discountAutomaticAppCreate`), erfordert den App-Scope `write_discounts`. Grund für Function statt native B2B-Preisliste: Shop läuft auf Shopify **Basic**-Plan, native B2B-Preislisten mit Mengenstaffeln sind Plus-exklusiv. Ändern: Array `TIERS` in `src/run.ts`, dann `shopify app deploy`.
 
+## CSV-Bulk-Bestellung
+
+Upload-Bereich oben auf `/pages/schnellbestellung` (`theme/sections/csv-order-upload.liquid` + `theme/assets/csv-order.js`), Format `SKU;Menge` pro Zeile (Master-Prompt §27). Validierung (SKU existiert, aktueller Preis, Bestand) läuft über die App-Proxy-Route `app/routes/csv-order.tsx` (`POST /apps/dealer/csv-order`), die per Admin-API-Suche `sku:'...'` alle Zeilen in einem Request auflöst. Das Hinzufügen zum Warenkorb passiert danach clientseitig über die normale Storefront `/cart/add.js` — die Route selbst fasst den Kunden-Warenkorb nie an. Zeigt "nicht gefunden" / "Bestand überschritten" / "5er-Gebinde"-Hinweise pro Zeile, bevor bestätigt wird (die finale, verbindliche Durchsetzung bleibt weiterhin bei den Checkout-Functions).
+
 ## Zahlungsarten
 
 Nativ als "Manual Payment Methods" im Store konfiguriert:

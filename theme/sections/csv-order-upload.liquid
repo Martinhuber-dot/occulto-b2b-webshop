@@ -1,0 +1,109 @@
+{% comment %}
+  CSV-Bulk-Bestellung (Master-Prompt §27): Händler lädt eine "SKU;Menge"-Datei
+  hoch statt jedes Produkt einzeln zu suchen. Validierung (SKU existiert,
+  Bestand, aktueller Preis) läuft über die App-Proxy-Route
+  `app/routes/csv-order.tsx`; das eigentliche Hinzufügen zum Warenkorb passiert
+  clientseitig über die normale Storefront-Cart-API, genau wie bei der
+  bestehenden Quick-Order-Liste.
+{% endcomment %}
+
+{%- liquid
+  assign b2b_price_visible = false
+  if customer and customer.tags contains 'dealer-approved'
+    assign b2b_price_visible = true
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if b2b_price_visible -%}
+  <script src="{{ 'csv-order.js' | asset_url }}" defer="defer"></script>
+  <script>
+    window.csvOrderStrings = {
+      uploading: {{ 'sections.csv_order.uploading' | t | json }},
+      summary: {{ 'sections.csv_order.summary' | t | json }},
+      error: {{ 'sections.csv_order.error' | t | json }},
+      notFound: {{ 'sections.csv_order.not_found' | t | json }},
+      exceedsStock: {{ 'sections.csv_order.exceeds_stock' | t | json }},
+      packWarning: {{ 'sections.csv_order.pack_warning' | t | json }},
+      adding: {{ 'sections.csv_order.adding' | t | json }},
+      added: {{ 'sections.csv_order.added' | t | json }},
+      sku: {{ 'sections.csv_order.sku' | t | json }},
+      product: {{ 'sections.csv_order.product' | t | json }},
+      quantity: {{ 'products.product.quantity.label' | t | json }},
+      note: {{ 'sections.csv_order.note' | t | json }}
+    };
+  </script>
+
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width section-{{ section.id }}-padding csv-order-upload__wrapper">
+      <h2 class="h3">{{ 'sections.csv_order.heading' | t }}</h2>
+      <p class="csv-order-upload__hint">{{ 'sections.csv_order.hint' | t }}</p>
+
+      <csv-order-upload data-endpoint="{{ shop.url }}/apps/dealer/csv-order">
+        <input type="file" accept=".csv,text/csv,text/plain" class="csv-order-upload__input">
+        <p data-csv-order-status class="csv-order-upload__status caption-large"></p>
+        <div data-csv-order-results class="csv-order-upload__results"></div>
+        <button type="button" data-csv-order-add-all class="button button--primary" hidden>
+          {{ 'sections.csv_order.add_all' | t }}
+        </button>
+      </csv-order-upload>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.csv-order.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.csv-order.presets.name"
+    }
+  ]
+}
+{% endschema %}

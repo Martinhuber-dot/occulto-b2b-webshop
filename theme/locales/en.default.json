@@ -438,6 +438,22 @@
       "heading": "Bulk order",
       "cart_total": "Cart total",
       "no_products": "No products are currently available for bulk ordering."
+    },
+    "csv_order": {
+      "heading": "CSV order",
+      "hint": "Upload a file in \"SKU;Quantity\" format, one line per item — e.g. OCC123;20",
+      "uploading": "Checking file …",
+      "summary": "[valid] of [count] lines found and available.",
+      "error": "The file could not be processed. Please check the format (SKU;Quantity).",
+      "not_found": "SKU not found",
+      "exceeds_stock": "Only [available] left in stock",
+      "pack_warning": "Please order in steps of 5 (exception: exact remaining stock)",
+      "adding": "Adding to cart …",
+      "added": "Added to cart.",
+      "sku": "SKU",
+      "product": "Product",
+      "note": "Note",
+      "add_all": "Add all available lines to cart"
     }
   },
   "localization": {

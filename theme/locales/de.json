@@ -437,6 +437,22 @@
       "heading": "Sammelbestellung",
       "cart_total": "Warenkorb gesamt",
       "no_products": "Aktuell sind keine Produkte für die Sammelbestellung verfügbar."
+    },
+    "csv_order": {
+      "heading": "CSV-Bestellung",
+      "hint": "Datei im Format „SKU;Menge“ hochladen, eine Position pro Zeile — z. B. OCC123;20",
+      "uploading": "Datei wird geprüft …",
+      "summary": "[valid] von [count] Positionen gefunden und verfügbar.",
+      "error": "Die Datei konnte nicht verarbeitet werden. Bitte Format prüfen (SKU;Menge).",
+      "not_found": "Artikelnummer nicht gefunden",
+      "exceeds_stock": "Nur noch [available] Stück verfügbar",
+      "pack_warning": "Bitte in 5er-Schritten bestellen (Ausnahme: exakter Restbestand)",
+      "adding": "Wird zum Warenkorb hinzugefügt …",
+      "added": "Zum Warenkorb hinzugefügt.",
+      "sku": "Artikelnummer",
+      "product": "Produkt",
+      "note": "Hinweis",
+      "add_all": "Alle verfügbaren Positionen in den Warenkorb"
     }
   },
   "localization": {
