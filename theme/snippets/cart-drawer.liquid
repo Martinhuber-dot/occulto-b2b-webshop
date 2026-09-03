@@ -86,6 +86,7 @@
           id="CartDrawer-Form"
           class="cart__contents cart-drawer__form"
           method="post"
+          novalidate
         >
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
             {%- if cart != empty -%}
@@ -228,6 +229,8 @@
                             <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                           {%- endif -%}
 
+                          {%- render 'quick-order-list-row-inventory', variant: item.variant -%}
+
                           <ul
                             class="discounts list-unstyled"
                             role="list"
@@ -313,6 +316,16 @@
                                       {{- 'icon-minus.svg' | inline_asset_content -}}
                                     </span>
                                   </button>
+                                  {%- liquid
+                                    # Occulto verkauft ausschließlich in 5er-Gebinden (siehe
+                                    # snippets/quantity-input.liquid) — item.variant.quantity_rule ist immer die
+                                    # native {min:1, increment:1} ohne B2B-Preislisten-Katalog, deshalb hart auf 5.
+                                    assign pack_step = 5
+                                    assign drawer_quantity_max = null
+                                    if item.variant.inventory_management == 'shopify' and item.variant.inventory_policy != 'continue'
+                                      assign drawer_quantity_max = item.variant.inventory_quantity | at_least: 0
+                                    endif
+                                  -%}
                                   <input
                                     class="quantity__input"
                                     type="number"
@@ -323,11 +336,11 @@
                                     {% # theme-check-disable %}
                                     data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
                                     min="0"
-                                    data-min="{{ item.variant.quantity_rule.min }}"
-                                    {% if item.variant.quantity_rule.max != null %}
-                                      max="{{ item.variant.quantity_rule.max }}"
+                                    data-min="{{ pack_step }}"
+                                    {% if drawer_quantity_max != null %}
+                                      max="{{ drawer_quantity_max }}"
                                     {% endif %}
-                                    step="{{ item.variant.quantity_rule.increment }}"
+                                    step="{{ pack_step }}"
                                     {% # theme-check-enable %}
                                     aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                                     id="Drawer-quantity-{{ item.index | plus: 1 }}"

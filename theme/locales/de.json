@@ -448,12 +448,9 @@
       "not_found": "Artikelnummer nicht gefunden",
       "exceeds_stock": "Nur noch [available] Stück verfügbar",
       "pack_warning": "Bitte in 5er-Schritten bestellen (Ausnahme: exakter Restbestand)",
-      "adding": "Wird zum Warenkorb hinzugefügt …",
-      "added": "Zum Warenkorb hinzugefügt.",
       "sku": "Artikelnummer",
       "product": "Produkt",
-      "note": "Hinweis",
-      "add_all": "Alle verfügbaren Positionen in den Warenkorb"
+      "note": "Hinweis"
     }
   },
   "localization": {

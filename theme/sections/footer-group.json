@@ -17,7 +17,7 @@
         "link_list": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
+            "heading": "Wichtige Links",
             "menu": "footer"
           }
         }
@@ -28,7 +28,7 @@
       "settings": {
         "color_scheme": "scheme-4",
         "newsletter_enable": false,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Für unseren Newsletter anmelden",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,

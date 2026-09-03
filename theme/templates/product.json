@@ -27,7 +27,7 @@
         "collapsible-row-1": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Product features",
+            "heading": "Produktmerkmale",
             "icon": "star",
             "content": "",
             "page": "product-features"
@@ -36,7 +36,7 @@
         "collapsible-row-0": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Materials and care",
+            "heading": "Material und Pflege",
             "icon": "leaf",
             "content": "",
             "page": "materials-and-care"
@@ -87,7 +87,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Other industry favorites",
+        "heading": "Weitere beliebte Artikel",
         "heading_size": "h2",
         "products_to_show": 5,
         "columns_desktop": 5,

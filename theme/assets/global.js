@@ -1384,8 +1384,11 @@ class BulkAdd extends HTMLElement {
     } else if (inputValue % parseInt(event.target.step) != 0 && !isExactRemainingStock) {
       this.setValidity(event, index, window.quickOrderListStrings.step_error.replace('[step]', event.target.step));
     } else {
+      // Kein reportValidity() hier: der native step-Constraint bleibt auch bei
+      // einem gültigen Restbestands-Wert (z.B. 9 bei step=5) "mismatched" —
+      // reportValidity() würde die native Browser-Fehlermeldung trotzdem
+      // anzeigen, obwohl unsere eigene Prüfung den Wert bewusst erlaubt.
       event.target.setCustomValidity('');
-      event.target.reportValidity();
       event.target.setAttribute('value', inputValue);
       this.startQueue(index, inputValue);
     }

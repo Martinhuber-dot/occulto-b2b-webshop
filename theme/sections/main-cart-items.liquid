@@ -51,7 +51,7 @@
       {%- endif -%}
     </div>
 
-    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart" novalidate>
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
@@ -177,6 +177,8 @@
                         <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                       {%- endif -%}
 
+                      {%- render 'quick-order-list-row-inventory', variant: item.variant -%}
+
                       <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                         {%- for discount in item.line_level_discount_allocations -%}
                           <li class="discounts__discount">
@@ -262,6 +264,16 @@
                                   {{- 'icon-minus.svg' | inline_asset_content -}}
                                 </span>
                               </button>
+                              {%- liquid
+                                # Occulto verkauft ausschließlich in 5er-Gebinden (siehe snippets/quantity-input.liquid
+                                # für dieselbe PACK_STEP=5-Begründung) — item.variant.quantity_rule ist hier ebenso
+                                # immer die native {min:1, increment:1} ohne B2B-Preislisten-Katalog, deshalb hart auf 5.
+                                assign pack_step = 5
+                                assign cart_quantity_max = null
+                                if item.variant.inventory_management == 'shopify' and item.variant.inventory_policy != 'continue'
+                                  assign cart_quantity_max = item.variant.inventory_quantity | at_least: 0
+                                endif
+                              -%}
                               <input
                                 class="quantity__input"
                                 data-quantity-variant-id="{{ item.variant.id }}"
@@ -272,11 +284,11 @@
                                 {% # theme-check-disable %}
                                 data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
                                 min="0"
-                                data-min="{{ item.variant.quantity_rule.min }}"
-                                {% if item.variant.quantity_rule.max != null %}
-                                  max="{{ item.variant.quantity_rule.max }}"
+                                data-min="{{ pack_step }}"
+                                {% if cart_quantity_max != null %}
+                                  max="{{ cart_quantity_max }}"
                                 {% endif %}
-                                step="{{ item.variant.quantity_rule.increment }}"
+                                step="{{ pack_step }}"
                                 {% # theme-check-enable %}
                                 aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                                 id="Quantity-{{ item.index | plus: 1 }}"

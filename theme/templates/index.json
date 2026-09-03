@@ -118,6 +118,36 @@
         "padding_bottom": 52
       }
     },
+    "brand_story": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Qualität aus Europa. Fair kalkuliert.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Wir produzieren in der EU – kurze Wege, verlässliche Standards, gleichbleibende Qualität. Gleichzeitig achten wir konsequent auf ein starkes Preis-Leistungs-Verhältnis, damit Sie als Handelspartner attraktive Margen erzielen, ohne bei der Qualität Abstriche machen zu müssen.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
     "multicolumn": {
       "type": "multicolumn",
       "blocks": {
@@ -156,20 +186,40 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column5": {
+          "type": "column",
+          "settings": {
+            "title": "Geprüfte Handelspartner",
+            "text": "<p>Jede Registrierung wird von uns persönlich geprüft und freigeschaltet – für ein exklusives Händlernetzwerk statt offenem Marktplatz.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column6": {
+          "type": "column",
+          "settings": {
+            "title": "Direkt vom Hersteller",
+            "text": "<p>Ohne Zwischenhändler zu Ihren Handelskonditionen.</p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "column1",
         "column2",
         "column3",
-        "column4"
+        "column4",
+        "column5",
+        "column6"
       ],
       "settings": {
         "title": "Warum Occulto?",
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "none",
         "button_label": "",
@@ -188,6 +238,7 @@
     "rich_text",
     "collection_list",
     "featured_collection1",
+    "brand_story",
     "multicolumn"
   ]
 }

@@ -449,12 +449,9 @@
       "not_found": "SKU not found",
       "exceeds_stock": "Only [available] left in stock",
       "pack_warning": "Please order in steps of 5 (exception: exact remaining stock)",
-      "adding": "Adding to cart …",
-      "added": "Added to cart.",
       "sku": "SKU",
       "product": "Product",
-      "note": "Note",
-      "add_all": "Add all available lines to cart"
+      "note": "Note"
     }
   },
   "localization": {

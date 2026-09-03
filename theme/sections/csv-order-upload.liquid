@@ -38,8 +38,6 @@
       notFound: {{ 'sections.csv_order.not_found' | t | json }},
       exceedsStock: {{ 'sections.csv_order.exceeds_stock' | t | json }},
       packWarning: {{ 'sections.csv_order.pack_warning' | t | json }},
-      adding: {{ 'sections.csv_order.adding' | t | json }},
-      added: {{ 'sections.csv_order.added' | t | json }},
       sku: {{ 'sections.csv_order.sku' | t | json }},
       product: {{ 'sections.csv_order.product' | t | json }},
       quantity: {{ 'products.product.quantity.label' | t | json }},
@@ -59,9 +57,6 @@
         <input type="file" accept=".csv,text/csv,text/plain" class="csv-order-upload__input">
         <p data-csv-order-status class="csv-order-upload__status caption-large"></p>
         <div data-csv-order-results class="csv-order-upload__results"></div>
-        <button type="button" data-csv-order-add-all class="button button--primary" hidden>
-          {{ 'sections.csv_order.add_all' | t }}
-        </button>
       </csv-order-upload>
     </div>
   </div>

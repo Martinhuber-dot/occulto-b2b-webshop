@@ -7,11 +7,9 @@ if (!customElements.get('csv-order-upload')) {
         this.fileInput = this.querySelector('input[type="file"]');
         this.resultsContainer = this.querySelector('[data-csv-order-results]');
         this.statusEl = this.querySelector('[data-csv-order-status]');
-        this.addAllButton = this.querySelector('[data-csv-order-add-all]');
         this.results = [];
 
         this.fileInput.addEventListener('change', this.onFileSelected.bind(this));
-        this.addAllButton.addEventListener('click', this.onAddAll.bind(this));
       }
 
       setStatus(text) {
@@ -23,7 +21,6 @@ if (!customElements.get('csv-order-upload')) {
         if (!file) return;
 
         this.setStatus(window.csvOrderStrings.uploading);
-        this.addAllButton.setAttribute('hidden', 'hidden');
         this.resultsContainer.innerHTML = '';
 
         const text = await file.text();
@@ -101,42 +98,6 @@ if (!customElements.get('csv-order-upload')) {
 
         this.resultsContainer.innerHTML = '';
         this.resultsContainer.appendChild(table);
-
-        if (validCount > 0) {
-          this.addAllButton.removeAttribute('hidden');
-        }
-      }
-
-      async onAddAll() {
-        const items = this.results
-          .filter((row) => row.found && !row.exceedsStock)
-          .map((row) => ({ id: parseInt(row.variantId, 10), quantity: row.quantity }));
-
-        if (items.length === 0) return;
-
-        this.addAllButton.disabled = true;
-        this.setStatus(window.csvOrderStrings.adding);
-
-        try {
-          const response = await fetch(window.routes.cart_add_url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ items }),
-          });
-
-          if (!response.ok) {
-            const error = await response.json();
-            this.setStatus(error.description || window.csvOrderStrings.error);
-            this.addAllButton.disabled = false;
-            return;
-          }
-
-          this.setStatus(window.csvOrderStrings.added);
-          window.location.href = window.routes.cart_url || '/cart';
-        } catch (error) {
-          this.setStatus(window.csvOrderStrings.error);
-          this.addAllButton.disabled = false;
-        }
       }
     }
   );

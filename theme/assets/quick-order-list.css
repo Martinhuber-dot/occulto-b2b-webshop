@@ -716,10 +716,6 @@ quick-order-list .pagination-wrapper {
   text-decoration: underline;
 }
 
-[data-csv-order-add-all][hidden] {
-  display: none;
-}
-
 .csv-order-upload__input {
   display: block;
   margin-bottom: 1.6rem;

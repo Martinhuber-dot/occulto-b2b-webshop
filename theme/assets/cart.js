@@ -82,19 +82,28 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
     const index = event.target.dataset.index;
     let message = '';
 
-    if (inputValue < event.target.dataset.min) {
+    // Occulto verkauft in 5er-Gebinden, außer beim exakten Restbestand (siehe
+    // global.js validateQuantity) — dieselbe Ausnahme muss hier gelten, sonst
+    // blockiert die native Validierung genau den Fall, für den das
+    // Snap-to-max-Verhalten in QuantityInput.onButtonClick gebaut wurde.
+    const isExactRemainingStock = event.target.max !== '' && inputValue === parseInt(event.target.max);
+
+    if (inputValue < event.target.dataset.min && !isExactRemainingStock) {
       message = window.quickOrderListStrings.min_error.replace('[min]', event.target.dataset.min);
     } else if (inputValue > parseInt(event.target.max)) {
       message = window.quickOrderListStrings.max_error.replace('[max]', event.target.max);
-    } else if (inputValue % parseInt(event.target.step) !== 0) {
+    } else if (inputValue % parseInt(event.target.step) !== 0 && !isExactRemainingStock) {
       message = window.quickOrderListStrings.step_error.replace('[step]', event.target.step);
     }
 
     if (message) {
       this.setValidity(event, index, message);
     } else {
+      // Kein reportValidity() hier: der native step-Constraint bleibt auch bei
+      // einem gültigen Restbestands-Wert (z.B. 9 bei step=5) "mismatched" —
+      // reportValidity() würde die native Browser-Fehlermeldung trotzdem
+      // anzeigen, obwohl unsere eigene Prüfung den Wert bewusst erlaubt.
       event.target.setCustomValidity('');
-      event.target.reportValidity();
       this.updateQuantity(
         index,
         inputValue,
