@@ -66,7 +66,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           id
           displayName
           email
-          defaultAddress { address1 city zip country }
+          defaultAddress { address1 city zip countryCodeV2 }
           vatId: metafield(namespace: "${NS}", key: "vat_id") { value }
         }
       }`,
@@ -101,7 +101,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
                   address1: address.address1,
                   city: address.city,
                   zip: address.zip,
-                  countryCode: address.country,
+                  countryCode: address.countryCodeV2,
                 }
               : undefined,
           },
@@ -109,13 +109,24 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       },
     },
   );
-  const companyData = await companyResponse.json();
+  const companyData = (await companyResponse.json()) as {
+    data?: {
+      companyCreate?: {
+        company: { id: string; defaultRole: { id: string } | null; locations: { nodes: { id: string }[] } };
+        userErrors: { field: string; message: string }[];
+      };
+    };
+    errors?: { message: string }[];
+  };
+  if (companyData.errors) {
+    return { error: companyData.errors.map((e) => e.message).join("; ") };
+  }
   const companyErrors = companyData.data?.companyCreate?.userErrors ?? [];
   if (companyErrors.length > 0) {
     return { error: companyErrors.map((e: { message: string }) => e.message).join("; ") };
   }
 
-  const company = companyData.data.companyCreate.company;
+  const company = companyData.data!.companyCreate!.company;
   const locationId = company.locations.nodes[0]?.id;
 
   const assignResponse = await admin.graphql(
