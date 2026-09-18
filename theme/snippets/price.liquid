@@ -21,7 +21,8 @@
     assign target = product
   endif
 
-  assign compare_at_price = target.compare_at_price
+  # Streichpreise werden im B2B-Shop nicht angezeigt
+  assign compare_at_price = nil
   assign price = target.price | default: 1999
   assign price_min = product.price_min
   assign price_max = product.price_max

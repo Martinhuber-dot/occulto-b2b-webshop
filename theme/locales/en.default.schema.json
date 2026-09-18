@@ -2808,6 +2808,9 @@
         "image": {
           "label": "Image"
         },
+        "text_image": {
+          "label": "Text side background image"
+        },
         "overline": {
           "label": "Overline"
         },

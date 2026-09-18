@@ -12,7 +12,8 @@
     "hero_split": {
       "type": "hero-split",
       "settings": {
-        "image": "shopify://shop_images/occulto-hero-best-dad.jpg",
+        "image": "shopify://shop_images/occulto-hero-sepp-masskrug.jpg",
+        "text_image": "shopify://shop_images/occulto-hero-best-dad.jpg",
         "overline": "Willkommen, Handelspartner",
         "heading": "Occulto Händlerportal",
         "text": "<p>Entdecken Sie das aktuelle Occulto Sortiment und bestellen Sie direkt zu Ihren individuellen Händlerkonditionen.</p>",
@@ -88,34 +89,6 @@
         "swipe_on_mobile": false,
         "padding_top": 48,
         "padding_bottom": 32
-      }
-    },
-    "featured_collection1": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Beliebte Artikel",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "sortiment-highlights",
-        "products_to_show": 10,
-        "columns_desktop": 5,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 52
       }
     },
     "brand_story": {
@@ -237,7 +210,6 @@
     "customer_welcome",
     "rich_text",
     "collection_list",
-    "featured_collection1",
     "brand_story",
     "multicolumn"
   ]

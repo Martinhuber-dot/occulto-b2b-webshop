@@ -3418,6 +3418,9 @@
         "image": {
           "label": "Bild"
         },
+        "text_image": {
+          "label": "Hintergrundbild Textseite"
+        },
         "overline": {
           "label": "Überzeile"
         },

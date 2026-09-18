@@ -11,6 +11,18 @@
 
 <div class="hero-split color-{{ section.settings.color_scheme }}">
   <div class="hero-split__text">
+    {%- if section.settings.text_image != blank -%}
+      {{
+        section.settings.text_image
+        | image_url: width: 1200
+        | image_tag:
+          loading: 'eager',
+          class: 'hero-split__text-bg',
+          widths: '400,600,800,1200',
+          sizes: '(min-width: 750px) 50vw, 100vw'
+      }}
+      <div class="hero-split__text-scrim"></div>
+    {%- endif -%}
     <div class="hero-split__text-inner">
       {%- if section.settings.overline != blank -%}
         <p class="hero-split__overline caption-with-letter-spacing">{{ section.settings.overline }}</p>
@@ -55,6 +67,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.hero-split.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "text_image",
+      "label": "t:sections.hero-split.settings.text_image.label"
     },
     {
       "type": "text",
