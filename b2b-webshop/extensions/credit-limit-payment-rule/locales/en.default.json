@@ -1,4 +1,4 @@
 {
-  "name": "credit-limit-payment-rule",
-  "description": "credit-limit-payment-rule"
+  "name": "Rechnung erst nach 3 bezahlten Bestellungen",
+  "description": "Hides the invoice payment method until the dealer has 3 paid orders (Vorkasse first)."
 }

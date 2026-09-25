@@ -1,4 +1,22 @@
 query CartPaymentMethodsTransformRunInput {
+  cart {
+    buyerIdentity {
+      customer {
+        paidOrderDates: metafield(namespace: "$app", key: "paid_order_dates") {
+          value
+        }
+      }
+    }
+  }
+  shop {
+    localTime {
+      date
+    }
+  }
+  paymentMethods {
+    id
+    name
+  }
   paymentCustomization {
     metafield(namespace: "$app:credit-limit-payment-rule", key: "function-configuration") {
       value

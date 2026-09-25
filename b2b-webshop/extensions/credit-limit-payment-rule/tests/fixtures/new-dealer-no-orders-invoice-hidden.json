@@ -1,0 +1,42 @@
+{
+  "payload": {
+    "export": "cart-payment-methods-transform-run",
+    "target": "cart.payment-methods.transform.run",
+    "input": {
+      "cart": {
+        "buyerIdentity": {
+          "customer": {
+            "paidOrderDates": null
+          }
+        }
+      },
+      "shop": {
+        "localTime": {
+          "date": "2026-09-25"
+        }
+      },
+      "paymentMethods": [
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/1",
+          "name": "Vorkasse (Banküberweisung)"
+        },
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/2",
+          "name": "Rechnung"
+        }
+      ],
+      "paymentCustomization": {
+        "metafield": null
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "paymentMethodHide": {
+            "paymentMethodId": "gid://shopify/PaymentCustomizationPaymentMethod/2"
+          }
+        }
+      ]
+    }
+  }
+}

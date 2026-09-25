@@ -47,6 +47,10 @@
   .dealer-registration-checkbox input {
     margin-top: 0.4rem;
   }
+
+  #DealerRegistrationError[hidden] {
+    display: none;
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -56,28 +60,29 @@
     </h1>
     <p>{{ 'templates.dealer_registration.intro' | t }}</p>
 
-    {%- if request.query_string contains 'error=missing_fields' -%}
-      <div class="form__message">
-        <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-          {{- 'icon-error.svg' | inline_asset_content -}}
-          {{ 'templates.dealer_registration.error_missing_fields' | t }}
-        </h2>
-      </div>
-    {%- elsif request.query_string contains 'error=create_failed' -%}
-      <div class="form__message">
-        <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-          {{- 'icon-error.svg' | inline_asset_content -}}
-          {{ 'templates.dealer_registration.error_create_failed' | t }}
-        </h2>
-      </div>
-    {%- elsif request.query_string contains 'error=not_ready' -%}
-      <div class="form__message">
-        <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-          {{- 'icon-error.svg' | inline_asset_content -}}
-          {{ 'templates.dealer_registration.error_not_ready' | t }}
-        </h2>
-      </div>
-    {%- endif -%}
+    <div class="form__message" id="DealerRegistrationError" hidden>
+      <h2 class="form-status caption-large text-body" role="alert" tabindex="-1">
+        {{- 'icon-error.svg' | inline_asset_content -}}
+        <span id="DealerRegistrationErrorText"></span>
+      </h2>
+    </div>
+
+    <script>
+      (function () {
+        var messages = {
+          missing_fields: {{ 'templates.dealer_registration.error_missing_fields' | t | json }},
+          create_failed: {{ 'templates.dealer_registration.error_create_failed' | t | json }},
+          not_ready: {{ 'templates.dealer_registration.error_not_ready' | t | json }}
+        };
+        var error = new URLSearchParams(window.location.search).get('error');
+        var text = messages[error];
+        if (!text) return;
+        var box = document.getElementById('DealerRegistrationError');
+        document.getElementById('DealerRegistrationErrorText').textContent = text;
+        box.hidden = false;
+        box.querySelector('.form-status').focus();
+      })();
+    </script>
 
     <form method="post" action="/apps/dealer/register" id="DealerRegistrationForm" class="isolate">
       <fieldset class="dealer-registration-fieldset">

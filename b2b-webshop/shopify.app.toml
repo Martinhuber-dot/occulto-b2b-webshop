@@ -23,12 +23,18 @@ api_version = "2026-10"
   uri = "/webhooks/inventory_levels/update"
   topics = [ "inventory_levels/update" ]
 
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/orders/paid"
+  topics = [ "orders/paid" ]
+
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 # Read-only scopes for Phase A discovery (products, customers, orders, B2B, markets, metafields, theme, pricing).
 # Write scopes will be added later, per phase, once the corresponding feature is actually built.
+# customer_read/write_customers: Customer Account API, for the "Meine Filialen" profile block (extensions/dealer-branches).
+# read/write_payment_customizations: activating the "Rechnung erst nach 3 bezahlten Bestellungen" payment rule (extensions/credit-limit-payment-rule).
 # write_products added for mirroring live inventory into a variant metafield (5-pack order-quantity rule).
-scopes = "read_products,read_product_listings,write_products,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,write_discounts,read_themes,read_locations,read_inventory,write_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_shipping,write_metaobjects,write_metaobject_definitions,read_files,write_files,read_legal_policies,write_legal_policies"
+scopes = "read_products,read_product_listings,write_products,read_customers,write_customers,read_orders,read_draft_orders,read_metaobjects,read_markets,write_markets,read_companies,write_companies,read_price_rules,read_discounts,write_discounts,read_themes,read_locations,read_inventory,write_inventory,read_translations,read_content,write_content,read_online_store_navigation,write_online_store_navigation,read_shipping,write_shipping,write_metaobjects,write_metaobject_definitions,read_files,write_files,read_legal_policies,write_legal_policies,customer_read_customers,customer_write_customers,read_payment_customizations,write_payment_customizations"
 
 [auth]
 redirect_urls = [ "https://b2b-app.occulto.de/api/auth" ]
@@ -132,6 +138,24 @@ name = "JTL-Kunden-ID"
 description = "Mapped JTL-Wawi customer identifier, set once synced"
 
   [customer.metafields.app.jtl_customer_id.access]
+  admin = "merchant_read_write"
+
+[customer.metafields.app.branch_addresses]
+type = "json"
+name = "Filialen (Lieferadressen)"
+description = "Branch delivery addresses the dealer maintains in the customer account (Meine Filialen); used by the cart branch split."
+
+  [customer.metafields.app.branch_addresses.access]
+  admin = "merchant_read_write"
+  customer_account = "read_write"
+  storefront = "public_read"
+
+[customer.metafields.app.paid_order_dates]
+type = "json"
+name = "Bezahlte Bestellungen (365 Tage)"
+description = "Paid orders of the last 365 days as [{id, date}], synced via orders/paid webhook. Rechnung is offered from 3 such orders on."
+
+  [customer.metafields.app.paid_order_dates.access]
   admin = "merchant_read_write"
 
 [variant.metafields.app.available_quantity]
